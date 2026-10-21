@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 120" width="100%" height="100%" fill="none">
+  <defs>
+    <!-- Left Building (Blue) Gradients -->
+    <linearGradient id="blue-roof" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0088FF"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+    <linearGradient id="blue-front-1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0066CC"/>
+      <stop offset="100%" stop-color="#004499"/>
+    </linearGradient>
+    <linearGradient id="blue-front-2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#0369A1"/>
+    </linearGradient>
+    <linearGradient id="blue-shadow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#003366"/>
+      <stop offset="100%" stop-color="#001F3F"/>
+    </linearGradient>
+
+    <!-- Center Building (Red) Gradients -->
+    <linearGradient id="red-top" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF3B4E"/>
+      <stop offset="50%" stop-color="#E5192D"/>
+      <stop offset="100%" stop-color="#B91C1C"/>
+    </linearGradient>
+    <linearGradient id="red-front" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E5192D"/>
+      <stop offset="50%" stop-color="#DC2626"/>
+      <stop offset="100%" stop-color="#991B1B"/>
+    </linearGradient>
+    <linearGradient id="red-shadow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#881337"/>
+      <stop offset="100%" stop-color="#4C0519"/>
+    </linearGradient>
+
+    <!-- Right Building (Silver/White) Gradients -->
+    <linearGradient id="silver-front" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
+    </linearGradient>
+    <linearGradient id="silver-side" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#CBD5E1"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+
+    <!-- Base Swoop Gradient -->
+    <linearGradient id="base-swoop" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E2E8F0" stop-opacity="0.05"/>
+      <stop offset="30%" stop-color="#F8FAFC" stop-opacity="0.95"/>
+      <stop offset="70%" stop-color="#CBD5E1" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#94A3B8" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <!-- EMBLEM GROUP -->
+  <g id="emblem" transform="translate(10, 8)">
+    <!-- Base Curved Swoop Horizon Line -->
+    <path d="M 6 88 Q 60 83 118 88 Q 60 91.5 6 88 Z" fill="url(#base-swoop)" />
+    <path d="M 12 88.5 Q 60 85 112 88.5" stroke="#FFFFFF" stroke-width="0.8" stroke-opacity="0.95" fill="none" />
+
+    <!-- 1. LEFT BUILDING (BLUE 3D TOWER) -->
+    <!-- Rear blue stepped block -->
+    <path d="M 28 36 L 46 24 L 46 86 L 28 86 Z" fill="url(#blue-shadow)" />
+    <path d="M 18 45 L 28 36 L 28 86 L 18 86 Z" fill="url(#blue-front-2)" />
+    
+    <!-- Front blue faceted tower -->
+    <path d="M 12 68 L 12 54 L 26 44 L 26 86 L 12 68 Z" fill="url(#blue-front-1)" />
+    <path d="M 12 54 L 26 44 L 42 31 L 30 43 Z" fill="url(#blue-roof)" />
+    <path d="M 26 44 L 42 31 L 42 86 L 26 86 Z" fill="url(#blue-front-1)" />
+    <path d="M 42 31 L 49 26 L 49 86 L 42 86 Z" fill="url(#blue-shadow)" />
+    <path d="M 12 54 L 26 44 L 42 31" stroke="#93C5FD" stroke-width="0.9" stroke-opacity="0.9" fill="none" />
+
+    <!-- 2. CENTER BUILDING (RED 3D APEX TOWER) -->
+    <!-- Tallest center skyscraper -->
+    <path d="M 52 14 L 64 4 L 75 26 L 52 35 Z" fill="url(#red-top)" />
+    <path d="M 64 4 L 77 18 L 75 26 Z" fill="#FF6B7A" />
+    <path d="M 52 35 L 64 27 L 64 86 L 52 86 Z" fill="url(#red-front)" />
+    <!-- Specular highlight lines -->
+    <path d="M 52 14 L 52 86" stroke="#FFFFFF" stroke-width="0.9" stroke-opacity="0.95" />
+    <path d="M 64 27 L 64 86" stroke="#FFA3AD" stroke-width="0.6" stroke-opacity="0.6" />
+    <!-- Red shadow flank -->
+    <path d="M 64 27 L 77 18 L 77 86 L 64 86 Z" fill="url(#red-shadow)" />
+
+    <!-- 3. RIGHT BUILDING (SILVER / WHITE METALLIC TOWER) -->
+    <path d="M 79 46 L 99 59 L 99 86 L 79 86 Z" fill="url(#silver-side)" />
+    <path d="M 79 46 L 88 40 L 88 86 L 79 86 Z" fill="url(#silver-front)" />
+    <path d="M 88 40 L 99 59" stroke="#FFFFFF" stroke-width="0.9" fill="none" />
+  </g>
+
+  <!-- VERTICAL DIVIDER -->
+  <line x1="140" y1="18" x2="140" y2="95" stroke="#CBD5E1" stroke-width="1.3" stroke-opacity="0.85" />
+
+  <!-- WORDMARK: SMARTZ SPACES -->
+  <g transform="translate(158, 62)">
+    <text x="0" y="0" font-family="'Inter', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="38" font-weight="800" letter-spacing="0.01em" fill="#FFFFFF">SMARTZ</text>
+    <text x="180" y="0" font-family="'Inter', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="38" font-weight="400" letter-spacing="0.02em" fill="#E5192D">SPACES</text>
+  </g>
+
+  <!-- SUBLINE: COMMERCIAL REAL ESTATE INTELLIGENCE -->
+  <g transform="translate(158, 86)">
+    <text x="2" y="0" font-family="'Inter', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" letter-spacing="0.22em" fill="#FFFFFF" fill-opacity="0.95">COMMERCIAL REAL ESTATE INTELLIGENCE</text>
+    <!-- Underline rule -->
+    <line x1="0" y1="7" x2="350" y2="7" stroke="#CBD5E1" stroke-width="0.85" stroke-opacity="0.75" />
+  </g>
+</svg>
