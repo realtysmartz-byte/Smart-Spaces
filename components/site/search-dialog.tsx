@@ -75,32 +75,32 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-primary-900/80 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-ink-900/40 backdrop-blur-md animate-in fade-in duration-200"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label="Search commercial properties, corridors and intelligence"
     >
       <div
-        className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-border overflow-hidden animate-in zoom-in-95 duration-200"
+        className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-line-200 overflow-hidden animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
-        <div className="flex items-center px-4 py-3.5 border-b border-border bg-sand-100/60">
-          <Search className="size-5 text-accent-500 shrink-0 mr-3" />
+        <div className="flex items-center px-4 py-3.5 border-b border-line-200 bg-blue-50/70">
+          <Search className="size-5 text-blue-600 shrink-0 mr-3" />
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search projects (e.g. M3M IFC), corridors, tools, or guides..."
-            className="w-full bg-transparent text-primary-900 placeholder:text-muted-600 focus:outline-none text-base"
+            className="w-full bg-transparent text-ink-900 placeholder:text-muted-600 focus:outline-none text-base"
           />
           {query && (
             <button
               type="button"
               onClick={() => setQuery('')}
-              className="p-1 rounded-full text-muted-600 hover:text-primary-900"
+              className="p-1 rounded-full text-muted-600 hover:text-ink-900"
               aria-label="Clear query"
             >
               <X className="size-4" />
@@ -109,7 +109,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
           <button
             type="button"
             onClick={onClose}
-            className="ml-2 px-2.5 py-1 text-xs font-semibold rounded-md bg-sand-100 text-primary-900 hover:bg-sand-100/80 transition-colors"
+            className="ml-2 px-2.5 py-1 text-xs font-semibold rounded-md bg-white border border-line-200 text-ink-900 hover:bg-blue-50 transition-colors"
           >
             Esc
           </button>
@@ -121,7 +121,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
           {projects.length > 0 && (
             <div>
               <div className="text-[11px] font-bold uppercase tracking-wider text-muted-600 px-2 mb-2 flex items-center gap-1.5">
-                <Building2 className="size-3 text-accent-500" />
+                <Building2 className="size-3 text-blue-600" />
                 Featured Commercial Developments
               </div>
               <div className="space-y-1">
@@ -130,17 +130,17 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                     key={p.slug}
                     type="button"
                     onClick={() => handleSelect(`/projects/${p.slug}`)}
-                    className="w-full text-left flex items-center justify-between p-2.5 rounded-lg hover:bg-sand-50 group transition-colors"
+                    className="w-full text-left flex items-center justify-between p-2.5 rounded-lg hover:bg-blue-50 group transition-colors"
                   >
                     <div>
-                      <div className="text-sm font-semibold text-primary-900 group-hover:text-accent-500 transition-colors">
+                      <div className="text-sm font-semibold text-ink-900 group-hover:text-blue-600 transition-colors">
                         {p.name}
                       </div>
                       <div className="text-xs text-muted-600">
                         {p.developer} • {p.sector}
                       </div>
                     </div>
-                    <ArrowRight className="size-4 text-muted-600 group-hover:text-accent-500 group-hover:translate-x-0.5 transition-all" />
+                    <ArrowRight className="size-4 text-muted-600 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all" />
                   </button>
                 ))}
               </div>
@@ -151,7 +151,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
           {locations.length > 0 && (
             <div>
               <div className="text-[11px] font-bold uppercase tracking-wider text-muted-600 px-2 mb-2 flex items-center gap-1.5">
-                <MapPin className="size-3 text-accent-500" />
+                <MapPin className="size-3 text-blue-600" />
                 Corridors & Micro-Markets
               </div>
               <div className="grid sm:grid-cols-2 gap-1.5">
@@ -160,15 +160,15 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                     key={l.slug}
                     type="button"
                     onClick={() => handleSelect(`/locations/${l.slug}`)}
-                    className="text-left p-2.5 rounded-lg hover:bg-sand-50 group transition-colors flex items-center justify-between"
+                    className="text-left p-2.5 rounded-lg hover:bg-blue-50 group transition-colors flex items-center justify-between"
                   >
                     <div>
-                      <div className="text-sm font-semibold text-primary-900 group-hover:text-accent-500 transition-colors">
+                      <div className="text-sm font-semibold text-ink-900 group-hover:text-blue-600 transition-colors">
                         {l.shortName}
                       </div>
                       <div className="text-xs text-muted-600">Key commercial hub</div>
                     </div>
-                    <ArrowRight className="size-3.5 text-muted-600 group-hover:text-accent-500" />
+                    <ArrowRight className="size-3.5 text-muted-600 group-hover:text-blue-600" />
                   </button>
                 ))}
               </div>
@@ -179,7 +179,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
           {tools.length > 0 && (
             <div>
               <div className="text-[11px] font-bold uppercase tracking-wider text-muted-600 px-2 mb-2 flex items-center gap-1.5">
-                <Calculator className="size-3 text-accent-500" />
+                <Calculator className="size-3 text-blue-600" />
                 Investment Calculators
               </div>
               <div className="space-y-1">
@@ -188,15 +188,15 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                     key={t.href}
                     type="button"
                     onClick={() => handleSelect(t.href)}
-                    className="w-full text-left flex items-center justify-between p-2.5 rounded-lg hover:bg-sand-50 group transition-colors"
+                    className="w-full text-left flex items-center justify-between p-2.5 rounded-lg hover:bg-blue-50 group transition-colors"
                   >
                     <div>
-                      <div className="text-sm font-semibold text-primary-900 group-hover:text-accent-500 transition-colors">
+                      <div className="text-sm font-semibold text-ink-900 group-hover:text-blue-600 transition-colors">
                         {t.name}
                       </div>
                       <div className="text-xs text-muted-600">{t.desc}</div>
                     </div>
-                    <ArrowRight className="size-4 text-muted-600 group-hover:text-accent-500" />
+                    <ArrowRight className="size-4 text-muted-600 group-hover:text-blue-600" />
                   </button>
                 ))}
               </div>
@@ -207,7 +207,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
           {articles.length > 0 && (
             <div>
               <div className="text-[11px] font-bold uppercase tracking-wider text-muted-600 px-2 mb-2 flex items-center gap-1.5">
-                <BookOpen className="size-3 text-accent-500" />
+                <BookOpen className="size-3 text-blue-600" />
                 Market Reports & Guides
               </div>
               <div className="space-y-1">
@@ -216,9 +216,9 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
                     key={a.slug}
                     type="button"
                     onClick={() => handleSelect(`/insights/${a.category}/${a.slug}`)}
-                    className="w-full text-left p-2.5 rounded-lg hover:bg-sand-50 group transition-colors"
+                    className="w-full text-left p-2.5 rounded-lg hover:bg-blue-50 group transition-colors"
                   >
-                    <div className="text-sm font-medium text-primary-900 group-hover:text-accent-500 transition-colors line-clamp-1">
+                    <div className="text-sm font-medium text-ink-900 group-hover:text-blue-600 transition-colors line-clamp-1">
                       {a.title}
                     </div>
                     <div className="text-xs text-muted-600 mt-0.5 line-clamp-1">{a.excerpt}</div>
@@ -236,9 +236,9 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
         </div>
 
         {/* Footer shortcuts */}
-        <div className="px-4 py-2.5 bg-sand-100 border-t border-border flex items-center justify-between text-[11px] text-muted-600">
-          <span>Press <kbd className="px-1.5 py-0.5 bg-white border border-border rounded font-mono text-[10px]">Esc</kbd> to exit</span>
-          <Link href="/projects" onClick={onClose} className="text-accent-500 font-bold hover:underline">
+        <div className="px-4 py-2.5 bg-blue-50 border-t border-line-200 flex items-center justify-between text-[11px] text-muted-600">
+          <span>Press <kbd className="px-1.5 py-0.5 bg-white border border-line-200 rounded font-mono text-[10px]">Esc</kbd> to exit</span>
+          <Link href="/projects" onClick={onClose} className="text-red-600 font-bold hover:underline">
             View all projects &rarr;
           </Link>
         </div>

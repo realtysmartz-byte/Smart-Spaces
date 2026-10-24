@@ -55,13 +55,13 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         />
       </div>
 
-      <section className="bg-primary-900 text-white py-12 sm:py-16">
+      <section className="bg-white text-ink-900 py-12 sm:py-16 border-b border-line-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="font-heading text-3xl sm:text-5xl font-extrabold text-white">
+            <h1 className="font-heading text-3xl sm:text-5xl font-extrabold text-ink-900">
               Search Results
             </h1>
-            <p className="mt-3 text-base text-sand-100/90 font-sans">
+            <p className="mt-3 text-base text-muted-600 font-sans">
               {query ? (
                 <>Showing results for &ldquo;<strong>{q}</strong>&rdquo;</>
               ) : (
@@ -76,8 +76,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         {/* Projects Results */}
         {matchedProjects.length > 0 && (
           <div>
-            <h2 className="font-heading text-2xl font-bold text-primary-900 mb-6 flex items-center gap-2">
-              <Building2 className="size-5 text-accent-500" />
+            <h2 className="font-heading text-2xl font-bold text-ink-900 mb-6 flex items-center gap-2">
+              <Building2 className="size-5 text-blue-600" />
               Commercial Projects ({matchedProjects.length})
             </h2>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -85,9 +85,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 <Link
                   key={p.slug}
                   href={`/projects/${p.slug}`}
-                  className="group rounded-2xl border border-sand-100 bg-white overflow-hidden shadow-sm hover:shadow-lg transition-all"
+                  className="group rounded-2xl border border-line-200 bg-white overflow-hidden shadow-sm hover:shadow-lg transition-all"
                 >
-                  <div className="relative aspect-[16/10] bg-primary-900 overflow-hidden">
+                  <div className="relative aspect-[16/10] bg-blue-50 overflow-hidden">
                     <Image
                       src={p.image}
                       alt={p.imageAlt}
@@ -99,7 +99,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                       {p.types.map((t) => (
                         <span
                           key={t}
-                          className="px-2 py-0.5 rounded text-[11px] font-bold uppercase bg-primary-900/95 text-white border border-primary-500/30"
+                          className="px-2 py-0.5 rounded text-[11px] font-bold uppercase bg-white/95 text-ink-900 border border-line-200 shadow-sm"
                         >
                           {propertyTypeLabels[t]}
                         </span>
@@ -107,15 +107,15 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                     </div>
                   </div>
                   <div className="p-5">
-                    <h3 className="font-heading text-lg font-bold text-primary-900 group-hover:text-accent-500 transition-colors">
+                    <h3 className="font-heading text-lg font-bold text-ink-900 group-hover:text-blue-600 transition-colors">
                       {p.name}
                     </h3>
                     <p className="text-xs text-muted-600 mt-1">{p.developer}</p>
                     <p className="text-xs text-muted-600 mt-1 flex items-center gap-1">
-                      <MapPin className="size-3.5 text-primary-500" />
+                      <MapPin className="size-3.5 text-red-500" />
                       {p.sector} • <span className="capitalize">{p.locationSlug.replace(/-/g, ' ')}</span>
                     </p>
-                    <div className="mt-4 pt-3 border-t border-sand-100 flex items-center justify-between text-xs font-semibold text-primary-900 group-hover:text-accent-500">
+                    <div className="mt-4 pt-3 border-t border-line-200 flex items-center justify-between text-xs font-semibold text-ink-900 group-hover:text-blue-600">
                       <span>View Intelligence Profile</span>
                       <ArrowRight className="size-3.5" />
                     </div>
@@ -129,8 +129,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         {/* Locations Results */}
         {matchedLocations.length > 0 && (
           <div>
-            <h2 className="font-heading text-2xl font-bold text-primary-900 mb-6 flex items-center gap-2">
-              <MapPin className="size-5 text-accent-500" />
+            <h2 className="font-heading text-2xl font-bold text-ink-900 mb-6 flex items-center gap-2">
+              <MapPin className="size-5 text-blue-600" />
               Corridors & Micro-Markets ({matchedLocations.length})
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -138,13 +138,13 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 <Link
                   key={l.slug}
                   href={`/locations/${l.slug}`}
-                  className="p-5 rounded-2xl border border-sand-100 bg-white hover:bg-sand-50 transition-colors shadow-sm group"
+                  className="p-5 rounded-2xl border border-line-200 bg-white hover:bg-blue-50 transition-colors shadow-sm group"
                 >
-                  <h3 className="font-heading text-lg font-bold text-primary-900 group-hover:text-accent-500 transition-colors">
+                  <h3 className="font-heading text-lg font-bold text-ink-900 group-hover:text-blue-600 transition-colors">
                     {l.name}
                   </h3>
                   <p className="text-xs text-muted-600 mt-1 line-clamp-2">{l.summary}</p>
-                  <div className="mt-3 text-xs font-semibold text-accent-500 flex items-center gap-1">
+                  <div className="mt-3 text-xs font-semibold text-blue-600 flex items-center gap-1">
                     <span>Corridor Deep-Dive</span>
                     <ArrowRight className="size-3" />
                   </div>
@@ -157,8 +157,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         {/* Articles Results */}
         {matchedArticles.length > 0 && (
           <div>
-            <h2 className="font-heading text-2xl font-bold text-primary-900 mb-6 flex items-center gap-2">
-              <BookOpen className="size-5 text-accent-500" />
+            <h2 className="font-heading text-2xl font-bold text-ink-900 mb-6 flex items-center gap-2">
+              <BookOpen className="size-5 text-blue-600" />
               Market Reports & Guides ({matchedArticles.length})
             </h2>
             <div className="space-y-3">
@@ -166,12 +166,12 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 <Link
                   key={a.slug}
                   href={`/insights/${a.category}/${a.slug}`}
-                  className="block p-5 rounded-2xl border border-sand-100 bg-white hover:bg-sand-50 transition-colors shadow-sm group"
+                  className="block p-5 rounded-2xl border border-line-200 bg-white hover:bg-blue-50 transition-colors shadow-sm group"
                 >
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-accent-500">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600">
                     {a.category.replace(/-/g, ' ')}
                   </span>
-                  <h3 className="font-heading text-lg font-bold text-primary-900 group-hover:text-accent-500 transition-colors mt-0.5">
+                  <h3 className="font-heading text-lg font-bold text-ink-900 group-hover:text-blue-600 transition-colors mt-0.5">
                     {a.title}
                   </h3>
                   <p className="text-xs text-muted-600 mt-1 line-clamp-2">{a.excerpt}</p>
@@ -182,20 +182,20 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         )}
 
         {matchedProjects.length === 0 && matchedLocations.length === 0 && matchedArticles.length === 0 && (
-          <div className="py-20 text-center bg-white rounded-3xl border border-sand-100 p-8">
+          <div className="py-20 text-center bg-white rounded-3xl border border-line-200 p-8">
             <Search className="size-12 text-muted-600 mx-auto mb-4 stroke-1" />
-            <h3 className="font-heading text-2xl font-bold text-primary-900">No properties or guides found</h3>
+            <h3 className="font-heading text-2xl font-bold text-ink-900">No properties or guides found</h3>
             <p className="text-sm text-muted-600 mt-2 max-w-md mx-auto">
               We couldn&apos;t find exact matches for &ldquo;{q}&rdquo;. Browse our commercial categories or connect with
               an advisor.
             </p>
             <div className="mt-6 flex justify-center gap-3">
-              <Link href="/projects" className="coral-btn px-5 py-2.5 rounded-xl text-sm font-bold shadow">
+              <Link href="/projects" className="red-btn px-5 py-2.5 rounded-xl text-sm font-semibold shadow">
                 Browse All Projects
               </Link>
               <Link
                 href="/contact"
-                className="px-5 py-2.5 rounded-xl text-sm font-semibold border border-sand-100 bg-sand-100 text-primary-900 hover:bg-sand-100/70"
+                className="blue-outline-btn px-5 py-2.5 rounded-xl text-sm font-semibold"
               >
                 Contact Advisory Team
               </Link>

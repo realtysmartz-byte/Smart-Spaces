@@ -27,9 +27,36 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const article = getArticle(params.category, params.slug)
   if (!article) return { title: 'Article Not Found' }
 
+  const canonicalUrl = `${siteConfig.url}/insights/${article.category}/${article.slug}`
   return {
-    title: `${article.title} | Smartz Spaces`,
+    title: `${article.title} | Smartz Spaces Research`,
     description: article.excerpt,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      type: 'article',
+      title: article.title,
+      description: article.excerpt,
+      url: canonicalUrl,
+      publishedTime: article.publishedAt,
+      modifiedTime: article.updatedAt,
+      authors: [article.author.name],
+      images: [
+        {
+          url: article.image,
+          width: 1200,
+          height: 630,
+          alt: article.imageAlt || article.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.excerpt,
+      images: [article.image],
+    },
   }
 }
 

@@ -13,6 +13,9 @@ import {
   TrendingUp,
   MapPin,
   ArrowRight,
+  Calculator,
+  BookOpen,
+  Info,
 } from 'lucide-react'
 import { siteConfig, whatsappHref } from '@/lib/site-config'
 import { Logo } from './logo'
@@ -22,12 +25,10 @@ import { cn } from '@/lib/utils'
 
 export function SiteHeader() {
   const pathname = usePathname()
-  const isHomePage = pathname === '/'
-
-  const [isScrolled, setIsScrolled] = useState(!isHomePage)
-  const [isCompact, setIsCompact] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
   const [searchOpen, setSearchOpen] = useState(false)
-  const [activeDropdown, setActiveDropdown] = useState<'properties' | 'locations' | null>(null)
+  const [activeDropdown, setActiveDropdown] = useState<'properties' | 'locations' | 'more' | null>(null)
 
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const lastScrollY = useRef(0)
@@ -36,18 +37,16 @@ export function SiteHeader() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
 
-      // Transparent to solid transition
-      if (isHomePage) {
-        setIsScrolled(currentScrollY > 40)
-      } else {
-        setIsScrolled(true)
-      }
+      // At top: scrollY <= 40px
+      setIsScrolled(currentScrollY > 40)
 
-      // Compact shrink on scroll down, expand back on scroll up
-      if (currentScrollY > 120 && currentScrollY > lastScrollY.current + 5) {
-        setIsCompact(true)
-      } else if (currentScrollY < lastScrollY.current - 10 || currentScrollY <= 40) {
-        setIsCompact(false)
+      // Hide on scroll down, show on scroll up (keep visible if search dialog or dropdown active)
+      if (searchOpen || activeDropdown !== null) {
+        setIsVisible(true)
+      } else if (currentScrollY > 90 && currentScrollY > lastScrollY.current + 8) {
+        setIsVisible(false) // Scroll down
+      } else if (currentScrollY < lastScrollY.current - 6 || currentScrollY <= 40) {
+        setIsVisible(true) // Scroll up
       }
 
       lastScrollY.current = currentScrollY
@@ -56,9 +55,9 @@ export function SiteHeader() {
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [isHomePage])
+  }, [searchOpen, activeDropdown])
 
-  const handleMouseEnter = (menu: 'properties' | 'locations') => {
+  const handleMouseEnter = (menu: 'properties' | 'locations' | 'more') => {
     if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current)
     setActiveDropdown(menu)
   }
@@ -101,7 +100,7 @@ export function SiteHeader() {
     },
   ]
 
-  // Locations Mega Menu Items
+  // Locations Mega Menu Items (7 corridors)
   const locationItems = [
     { name: 'Golf Course Road', href: '/locations/golf-course-road', tag: 'Prime Institutional' },
     { name: 'Golf Course Extn Road', href: '/locations/golf-course-extension-road', tag: 'High-End Retail & Offices' },
@@ -112,81 +111,76 @@ export function SiteHeader() {
     { name: 'Manesar', href: '/locations/manesar', tag: 'Corporate & Logistics' },
   ]
 
-  const navLinks = [
+  const primaryNavLinks = [
     { label: 'Offices', href: '/office-space-in-gurgaon' },
     { label: 'Retail', href: '/retail-property-in-gurgaon' },
     { label: 'SCO', href: '/sco-plots-in-gurgaon' },
     { label: 'Investment', href: '/commercial-property-for-investment-in-gurgaon' },
-    { label: 'Insights', href: '/insights' },
-    { label: 'Tools', href: '/tools' },
   ]
 
-  const isSolid = isScrolled || !isHomePage
+  const secondaryNavLinks = [
+    { label: 'Insights', href: '/insights', icon: BookOpen },
+    { label: 'Calculators', href: '/tools', icon: Calculator },
+    { label: 'Compare', href: '/compare', icon: Building2 },
+    { label: 'About', href: '/about', icon: Info },
+  ]
 
   return (
     <>
+      {/* Attached top navbar: position fixed, top: 0, left: 0, right: 0, full-width, no margin */}
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out',
-          isSolid
-            ? 'bg-primary-900/98 backdrop-blur-md shadow-xl'
-            : 'bg-transparent'
+          'fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 ease-in-out',
+          isVisible ? 'translate-y-0' : '-translate-y-full',
+          isScrolled
+            ? 'h-16 bg-white/95 backdrop-blur-md shadow-[0_4px_20px_rgba(20,33,61,0.08)]'
+            : 'h-[72px] bg-white shadow-none'
         )}
       >
-        {/* Dark Top Gradient Scrim on Hero for link contrast */}
-        {!isSolid && (
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-transparent pointer-events-none -z-10" />
-        )}
-
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-accent-500 focus:px-3 focus:py-2 focus:text-white focus:font-bold"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-red-600 focus:px-3 focus:py-2 focus:text-white focus:font-bold"
         >
           Skip to content
         </a>
 
-        <div
-          className={cn(
-            'mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 flex items-center justify-between transition-all duration-300 gap-2',
-            isCompact ? 'h-16' : 'h-20'
-          )}
-        >
-          {/* Brand Logo with 3D Architectural Emblem */}
+        <div className="mx-auto max-w-7xl h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-2 xl:gap-4">
+          {/* Logo Left */}
           <div className="shrink-0">
-            <Logo inverted={true} />
+            <Logo inverted={false} isScrolled={isScrolled} />
           </div>
 
-          {/* Desktop Navigation - Responsive Spacing & No Overflow */}
-          <nav aria-label="Primary" className="hidden xl:flex items-center gap-1 2xl:gap-2 shrink-0">
+          {/* Desktop Navigation Links Center (14px, weight 500, deep ink text) */}
+          <nav aria-label="Primary" className="hidden lg:flex items-center gap-2.5 lg:gap-3 xl:gap-4.5 2xl:gap-6 shrink-0">
             {/* Properties Dropdown */}
             <div
-              className="relative"
+              className="relative py-1.5"
               onMouseEnter={() => handleMouseEnter('properties')}
               onMouseLeave={handleMouseLeave}
             >
               <button
                 type="button"
                 className={cn(
-                  'group flex items-center gap-1 px-2.5 xl:px-3 py-1.5 text-xs xl:text-sm font-medium transition-colors rounded-md focus:outline-none whitespace-nowrap',
+                  'group flex items-center gap-1 text-sm font-medium transition-colors focus:outline-none whitespace-nowrap',
                   pathname.startsWith('/projects') ||
                     pathname === '/office-space-in-gurgaon' ||
                     pathname === '/retail-property-in-gurgaon' ||
                     pathname === '/sco-plots-in-gurgaon'
-                    ? 'text-accent-500 font-semibold'
-                    : 'text-white/90 hover:text-white'
+                    ? 'text-blue-600 font-semibold'
+                    : 'text-ink-900 hover:text-blue-600'
                 )}
                 aria-expanded={activeDropdown === 'properties'}
               >
                 <span>Properties</span>
                 <ChevronDown
                   className={cn(
-                    'size-3.5 transition-transform duration-200 text-accent-500/80 group-hover:text-accent-500',
-                    activeDropdown === 'properties' && 'rotate-180'
+                    'size-3.5 transition-transform duration-200 text-muted-600 group-hover:text-blue-600',
+                    activeDropdown === 'properties' && 'rotate-180 text-blue-600'
                   )}
                 />
                 <span
                   className={cn(
-                    'absolute bottom-0 left-2.5 right-2.5 h-0.5 bg-accent-500 transition-all duration-200 rounded-full',
+                    'absolute -bottom-1.5 left-0 right-0 h-[2px] bg-red-600 transition-all duration-200 rounded-full',
                     pathname.startsWith('/projects') ||
                       pathname === '/office-space-in-gurgaon' ||
                       pathname === '/retail-property-in-gurgaon' ||
@@ -197,10 +191,10 @@ export function SiteHeader() {
                 />
               </button>
 
-              {/* Properties Mega Menu Dropdown Card */}
+              {/* Properties Mega Menu Dropdown Card (Clean White) */}
               {activeDropdown === 'properties' && (
                 <div
-                  className="absolute top-full left-0 w-[470px] bg-primary-900/98 backdrop-blur-xl border border-primary-700/90 rounded-2xl shadow-2xl p-4 mt-1 animate-in fade-in slide-in-from-top-2 duration-200 z-50 text-left"
+                  className="absolute top-full -left-4 w-[480px] bg-white border border-line-200 rounded-2xl shadow-[0_12px_36px_rgba(20,33,61,0.12)] p-4 mt-1 animate-in fade-in slide-in-from-top-2 duration-200 z-50 text-left"
                   onMouseEnter={() => handleMouseEnter('properties')}
                   onMouseLeave={handleMouseLeave}
                 >
@@ -212,15 +206,15 @@ export function SiteHeader() {
                           key={item.href}
                           href={item.href}
                           onClick={() => setActiveDropdown(null)}
-                          className="flex flex-col p-3 rounded-xl hover:bg-primary-700/60 transition-colors group/item border border-transparent hover:border-accent-500/20"
+                          className="flex flex-col p-3 rounded-xl hover:bg-blue-50 transition-colors group/item border border-transparent hover:border-blue-100"
                         >
                           <div className="flex items-center justify-between mb-1">
-                            <span className="flex items-center gap-2 text-sm font-semibold text-white group-hover/item:text-accent-500 transition-colors">
-                              <Icon className="size-4 text-accent-500" />
+                            <span className="flex items-center gap-2 text-sm font-semibold text-ink-900 group-hover/item:text-blue-600 transition-colors">
+                              <Icon className="size-4 text-blue-600" />
                               {item.title}
                             </span>
                           </div>
-                          <span className="text-xs text-sand-50/70 line-clamp-2 leading-relaxed">
+                          <span className="text-xs text-muted-600 line-clamp-2 leading-relaxed">
                             {item.desc}
                           </span>
                         </Link>
@@ -228,12 +222,12 @@ export function SiteHeader() {
                     })}
                   </div>
 
-                  <div className="mt-3 pt-3 border-t border-primary-700/80 flex items-center justify-between px-2">
-                    <span className="text-xs text-sand-50/60">Ready to explore all projects?</span>
+                  <div className="mt-3 pt-3 border-t border-line-200 flex items-center justify-between px-2">
+                    <span className="text-xs text-muted-600">Explore complete catalog</span>
                     <Link
                       href="/projects"
                       onClick={() => setActiveDropdown(null)}
-                      className="text-xs font-bold text-accent-500 hover:text-accent-600 flex items-center gap-1"
+                      className="text-xs font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
                     >
                       Browse All Projects <ArrowRight className="size-3" />
                     </Link>
@@ -244,30 +238,30 @@ export function SiteHeader() {
 
             {/* Locations Dropdown */}
             <div
-              className="relative"
+              className="relative py-1.5"
               onMouseEnter={() => handleMouseEnter('locations')}
               onMouseLeave={handleMouseLeave}
             >
               <button
                 type="button"
                 className={cn(
-                  'group flex items-center gap-1 px-2.5 xl:px-3 py-1.5 text-xs xl:text-sm font-medium transition-colors rounded-md focus:outline-none whitespace-nowrap',
+                  'group flex items-center gap-1 text-sm font-medium transition-colors focus:outline-none whitespace-nowrap',
                   pathname.startsWith('/locations')
-                    ? 'text-accent-500 font-semibold'
-                    : 'text-white/90 hover:text-white'
+                    ? 'text-blue-600 font-semibold'
+                    : 'text-ink-900 hover:text-blue-600'
                 )}
                 aria-expanded={activeDropdown === 'locations'}
               >
                 <span>Locations</span>
                 <ChevronDown
                   className={cn(
-                    'size-3.5 transition-transform duration-200 text-accent-500/80 group-hover:text-accent-500',
-                    activeDropdown === 'locations' && 'rotate-180'
+                    'size-3.5 transition-transform duration-200 text-muted-600 group-hover:text-blue-600',
+                    activeDropdown === 'locations' && 'rotate-180 text-blue-600'
                   )}
                 />
                 <span
                   className={cn(
-                    'absolute bottom-0 left-2.5 right-2.5 h-0.5 bg-accent-500 transition-all duration-200 rounded-full',
+                    'absolute -bottom-1.5 left-0 right-0 h-[2px] bg-red-600 transition-all duration-200 rounded-full',
                     pathname.startsWith('/locations')
                       ? 'opacity-100 scale-x-100'
                       : 'opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100'
@@ -275,14 +269,14 @@ export function SiteHeader() {
                 />
               </button>
 
-              {/* Locations Dropdown Card */}
+              {/* Locations Dropdown Card (Clean White) */}
               {activeDropdown === 'locations' && (
                 <div
-                  className="absolute top-full -left-12 w-[420px] bg-primary-900/98 backdrop-blur-xl border border-primary-700/90 rounded-2xl shadow-2xl p-4 mt-1 animate-in fade-in slide-in-from-top-2 duration-200 z-50 text-left"
+                  className="absolute top-full -left-8 w-[420px] bg-white border border-line-200 rounded-2xl shadow-[0_12px_36px_rgba(20,33,61,0.12)] p-4 mt-1 animate-in fade-in slide-in-from-top-2 duration-200 z-50 text-left"
                   onMouseEnter={() => handleMouseEnter('locations')}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-accent-500/90 px-2 mb-2">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-blue-600 px-2 mb-2">
                     Gurgaon Commercial Corridors
                   </div>
                   <div className="space-y-1">
@@ -291,26 +285,26 @@ export function SiteHeader() {
                         key={loc.href}
                         href={loc.href}
                         onClick={() => setActiveDropdown(null)}
-                        className="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-primary-700/60 transition-colors group/loc"
+                        className="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors group/loc"
                       >
                         <div className="flex items-center gap-2">
-                          <MapPin className="size-3.5 text-accent-500 group-hover/loc:scale-110 transition-transform" />
-                          <span className="text-sm font-medium text-white group-hover/loc:text-accent-500 transition-colors">
+                          <MapPin className="size-3.5 text-blue-600 group-hover/loc:scale-110 transition-transform" />
+                          <span className="text-sm font-medium text-ink-900 group-hover/loc:text-blue-600 transition-colors">
                             {loc.name}
                           </span>
                         </div>
-                        <span className="text-[11px] text-sand-50/70 font-medium px-2 py-0.5 rounded bg-primary-700/50">
+                        <span className="text-[11px] text-muted-600 font-medium px-2 py-0.5 rounded bg-blue-50">
                           {loc.tag}
                         </span>
                       </Link>
                     ))}
                   </div>
 
-                  <div className="mt-3 pt-3 border-t border-primary-700/80 px-2 flex justify-end">
+                  <div className="mt-3 pt-3 border-t border-line-200 px-2 flex justify-end">
                     <Link
                       href="/locations"
                       onClick={() => setActiveDropdown(null)}
-                      className="text-xs font-bold text-accent-500 hover:text-accent-600 flex items-center gap-1"
+                      className="text-xs font-bold text-red-600 hover:text-red-700 flex items-center gap-1"
                     >
                       View All Corridors &rarr;
                     </Link>
@@ -319,64 +313,148 @@ export function SiteHeader() {
               )}
             </div>
 
-            {/* Direct Links */}
-            {navLinks.map((item) => {
+            {/* Direct Primary Links */}
+            {primaryNavLinks.map((item) => {
               const isActive = pathname === item.href
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    'relative px-2.5 xl:px-3 py-1.5 text-xs xl:text-sm font-medium transition-colors group rounded-md whitespace-nowrap',
-                    isActive ? 'text-accent-500 font-semibold' : 'text-white/90 hover:text-white'
+                    'relative py-1.5 text-sm font-medium transition-colors group whitespace-nowrap',
+                    isActive ? 'text-blue-600 font-semibold' : 'text-ink-900 hover:text-blue-600'
                   )}
                 >
                   {item.label}
                   <span
                     className={cn(
-                      'absolute bottom-0 left-2.5 right-2.5 h-0.5 bg-accent-500 transition-all duration-200 rounded-full',
+                      'absolute -bottom-1.5 left-0 right-0 h-[2px] bg-red-600 transition-all duration-200 rounded-full',
                       isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100'
                     )}
                   />
                 </Link>
               )
             })}
+
+            {/* On wide screens (>= 1380px), show Insights & Tools directly */}
+            <div className="hidden min-[1380px]:flex items-center gap-3.5 xl:gap-4.5">
+              <Link
+                href="/insights"
+                className={cn(
+                  'relative py-1.5 text-sm font-medium transition-colors group whitespace-nowrap',
+                  pathname.startsWith('/insights') ? 'text-blue-600 font-semibold' : 'text-ink-900 hover:text-blue-600'
+                )}
+              >
+                Insights
+                <span
+                  className={cn(
+                    'absolute -bottom-1.5 left-0 right-0 h-[2px] bg-red-600 transition-all duration-200 rounded-full',
+                    pathname.startsWith('/insights') ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100'
+                  )}
+                />
+              </Link>
+
+              <Link
+                href="/tools"
+                className={cn(
+                  'relative py-1.5 text-sm font-medium transition-colors group whitespace-nowrap',
+                  pathname.startsWith('/tools') ? 'text-blue-600 font-semibold' : 'text-ink-900 hover:text-blue-600'
+                )}
+              >
+                Tools
+                <span
+                  className={cn(
+                    'absolute -bottom-1.5 left-0 right-0 h-[2px] bg-red-600 transition-all duration-200 rounded-full',
+                    pathname.startsWith('/tools') ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100'
+                  )}
+                />
+              </Link>
+            </div>
+
+            {/* Below 1380px: "More" dropdown for secondary items to guarantee zero button overflow */}
+            <div
+              className="relative py-1.5 min-[1380px]:hidden"
+              onMouseEnter={() => handleMouseEnter('more')}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button
+                type="button"
+                className={cn(
+                  'group flex items-center gap-1 text-sm font-medium transition-colors focus:outline-none whitespace-nowrap',
+                  pathname === '/insights' || pathname.startsWith('/tools') || pathname === '/compare' || pathname === '/about'
+                    ? 'text-blue-600 font-semibold'
+                    : 'text-ink-900 hover:text-blue-600'
+                )}
+                aria-expanded={activeDropdown === 'more'}
+              >
+                <span>More</span>
+                <ChevronDown
+                  className={cn(
+                    'size-3.5 transition-transform duration-200 text-muted-600 group-hover:text-blue-600',
+                    activeDropdown === 'more' && 'rotate-180 text-blue-600'
+                  )}
+                />
+              </button>
+
+              {activeDropdown === 'more' && (
+                <div
+                  className="absolute top-full right-0 w-48 bg-white border border-line-200 rounded-xl shadow-[0_8px_30px_rgba(20,33,61,0.12)] p-2 mt-1 animate-in fade-in slide-in-from-top-2 duration-200 z-50 text-left"
+                  onMouseEnter={() => handleMouseEnter('more')}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  {secondaryNavLinks.map((item) => {
+                    const Icon = item.icon
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setActiveDropdown(null)}
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-ink-900 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                      >
+                        <Icon className="size-4 text-blue-600" />
+                        <span>{item.label}</span>
+                      </Link>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
           </nav>
 
-          {/* Right Action Icons & Coral Shortlist Button (Fully Visible, No Overflow) */}
+          {/* Right Action Icons & Red-600 Shortlist Button (Never clipped/overflowed) */}
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
-            {/* Search Trigger */}
+            {/* Search Trigger Button */}
             <button
               type="button"
               onClick={() => setSearchOpen(true)}
-              className="p-2 sm:p-2.5 rounded-full text-white/90 hover:text-accent-500 hover:bg-primary-700/50 transition-colors focus:outline-none focus:ring-2 focus:ring-accent-500/50"
+              className="p-2 rounded-full text-ink-900 hover:text-blue-600 hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600/30"
               aria-label="Search commercial properties and intelligence"
               title="Search (Ctrl + K)"
             >
-              <Search className="size-4 sm:size-5" />
+              <Search className="size-4 sm:size-4.5" />
             </button>
 
-            {/* WhatsApp Icon Button */}
+            {/* WhatsApp Icon Button (Royal Blue / Accent) */}
             <a
               href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 sm:p-2.5 rounded-full text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-400/50"
+              className="p-2 rounded-full text-blue-600 hover:text-blue-700 hover:bg-blue-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600/30"
               aria-label="Chat on WhatsApp with Commercial Advisor"
               title="Chat on WhatsApp"
             >
-              <MessageCircle className="size-4 sm:size-5" />
+              <MessageCircle className="size-4 sm:size-4.5" />
             </a>
 
-            {/* Coral "Get My Shortlist" CTA — Fully visible, shrink-0, never clipped */}
+            {/* Red-600 "Get My Shortlist" CTA — Logo Red, Never clipped */}
             <Link
               href="/contact#shortlist"
-              className="coral-btn hidden xl:inline-flex items-center justify-center px-4 py-2 xl:px-4 xl:py-2.5 rounded-xl text-xs xl:text-sm font-bold shadow-lg tracking-wide whitespace-nowrap shrink-0"
+              className="red-btn hidden sm:inline-flex items-center justify-center px-3.5 py-2 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap shrink-0 shadow-sm rounded-xl"
             >
               <span>Get My Shortlist</span>
             </Link>
 
-            {/* Mobile Drawer Toggle (visible on screens below lg) */}
+            {/* Mobile Drawer Toggle (visible below lg) */}
             <MobileNav />
           </div>
         </div>

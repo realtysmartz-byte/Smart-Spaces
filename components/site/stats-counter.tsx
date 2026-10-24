@@ -50,71 +50,72 @@ export function StatsCounter() {
   }, [isVisible])
 
   return (
-    <section ref={sectionRef} className="py-20 sm:py-24 bg-primary-900 text-white relative overflow-hidden">
+    <section ref={sectionRef} className="py-10 sm:py-14 bg-blue-50 text-ink-900 relative overflow-hidden border-t border-line-200">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-xs font-semibold uppercase tracking-wider mb-4">
-            Research-Led Real Estate Intelligence
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 sm:mb-8 gap-4 pb-4 border-b border-line-200">
+          <div className="flex flex-wrap items-center gap-3">
+            <h2 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-ink-900">
+              Built on Due Diligence, Not Sales Pitches
+            </h2>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 border border-blue-300/40 text-blue-600 text-xs font-semibold uppercase tracking-wider">
+              Research-Led Intelligence
+            </span>
           </div>
-          <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl text-white">
-            Built on Due Diligence, Not Sales Pitches
-          </h2>
-          <p className="mt-3 text-base text-sand-50/85 leading-relaxed">
-            Smartz Spaces delivers independent advisory backed by location infrastructure analysis, cash flow
-            feasibility, and risk profiling across Gurgaon and Delhi NCR.
+          <p className="text-xs sm:text-sm text-muted-600 max-w-md md:text-right">
+            Independent advisory backed by infrastructure analysis, cash flow modeling, and verified title diligence.
           </p>
         </div>
 
         {/* Counters Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          <div className="p-6 rounded-2xl bg-primary-700/60 border border-white/10 text-center shadow-lg">
-            <Compass className="size-8 text-accent-500 mx-auto mb-3" />
-            <div className="font-heading text-4xl sm:text-5xl font-bold text-white">
+          <div className="p-6 rounded-2xl bg-white border border-line-200 text-center shadow-[0_8px_30px_rgba(20,33,61,0.06)]">
+            <Compass className="size-8 text-blue-600 mx-auto mb-3" />
+            <div className="font-heading text-4xl sm:text-5xl font-bold text-ink-900">
               {corridorCount}
             </div>
-            <div className="text-xs sm:text-sm font-semibold text-accent-500 mt-2 uppercase tracking-wider">
+            <div className="text-xs sm:text-sm font-semibold text-blue-600 mt-2 uppercase tracking-wider">
               Prime Corridors Mapped
             </div>
-            <p className="text-xs text-sand-50/75 mt-1">
+            <p className="text-xs text-muted-600 mt-1">
               Golf Course Rd, SPR, Dwarka Exp, Sohna Rd & more
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-primary-700/60 border border-white/10 text-center shadow-lg">
-            <BarChart3 className="size-8 text-accent-500 mx-auto mb-3" />
-            <div className="font-heading text-4xl sm:text-5xl font-bold text-white">
+          <div className="p-6 rounded-2xl bg-white border border-line-200 text-center shadow-[0_8px_30px_rgba(20,33,61,0.06)]">
+            <BarChart3 className="size-8 text-blue-600 mx-auto mb-3" />
+            <div className="font-heading text-4xl sm:text-5xl font-bold text-ink-900">
               {assetClassCount}
             </div>
-            <div className="text-xs sm:text-sm font-semibold text-accent-500 mt-2 uppercase tracking-wider">
+            <div className="text-xs sm:text-sm font-semibold text-blue-600 mt-2 uppercase tracking-wider">
               Asset Classes Analyzed
             </div>
-            <p className="text-xs text-sand-50/75 mt-1">
+            <p className="text-xs text-muted-600 mt-1">
               Offices, High-Street Retail, SCO Plots & Pre-Leased
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-primary-700/60 border border-white/10 text-center shadow-lg">
-            <ShieldCheck className="size-8 text-accent-500 mx-auto mb-3" />
-            <div className="font-heading text-4xl sm:text-5xl font-bold text-white">
+          <div className="p-6 rounded-2xl bg-white border border-line-200 text-center shadow-[0_8px_30px_rgba(20,33,61,0.06)]">
+            <ShieldCheck className="size-8 text-red-600 mx-auto mb-3" />
+            <div className="font-heading text-4xl sm:text-5xl font-bold text-ink-900">
               {checkpointsCount}+
             </div>
-            <div className="text-xs sm:text-sm font-semibold text-accent-500 mt-2 uppercase tracking-wider">
+            <div className="text-xs sm:text-sm font-semibold text-red-600 mt-2 uppercase tracking-wider">
               Diligence Checkpoints
             </div>
-            <p className="text-xs text-sand-50/75 mt-1">
+            <p className="text-xs text-muted-600 mt-1">
               Title, RERA, Catchment, Yield & Exit Liquidity
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-primary-700/60 border border-white/10 text-center shadow-lg">
-            <CheckCircle2 className="size-8 text-primary-500 mx-auto mb-3" />
-            <div className="font-heading text-4xl sm:text-5xl font-bold text-primary-500">
+          <div className="p-6 rounded-2xl bg-white border border-line-200 text-center shadow-[0_8px_30px_rgba(20,33,61,0.06)]">
+            <CheckCircle2 className="size-8 text-blue-600 mx-auto mb-3" />
+            <div className="font-heading text-4xl sm:text-5xl font-bold text-blue-600">
               100%
             </div>
-            <div className="text-xs sm:text-sm font-semibold text-primary-500 mt-2 uppercase tracking-wider">
+            <div className="text-xs sm:text-sm font-semibold text-blue-600 mt-2 uppercase tracking-wider">
               Unbiased Advisory
             </div>
-            <p className="text-xs text-sand-50/75 mt-1">
+            <p className="text-xs text-muted-600 mt-1">
               Zero developer portal bias; investor interest first
             </p>
           </div>

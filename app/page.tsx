@@ -70,89 +70,127 @@ export default function HomePage() {
     <>
       <JsonLd data={homePageSchema} />
 
-      {/* Hero Section with 2-second Auto-Changing Slideshow */}
-      <section className="relative min-h-[92vh] sm:min-h-screen flex items-center justify-center pt-28 pb-20 sm:pt-36 sm:pb-28 text-white overflow-hidden bg-primary-900">
-        <HeroSlideshow />
+      {/* Split Hero Section: Left 48% Copy, Right 52% 2s Slideshow, Search Card Below */}
+      <section className="relative pt-6 sm:pt-10 pb-12 sm:pb-16 text-ink-900 bg-white overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 min-h-0">
+            {/* Left Column: ~48% on desktop */}
+            <div className="w-full lg:w-[48%] order-1 text-left flex flex-col justify-center">
+              {/* Single Pill */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100 border border-blue-300/40 text-blue-600 text-xs font-semibold shadow-sm mb-4 self-start">
+                <Compass className="size-3.5 text-blue-600" />
+                <span>Commercial Real Estate Intelligence • Gurgaon &amp; Delhi NCR</span>
+              </div>
 
-        <div className="relative z-30 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center w-full">
-          {/* Max-width ~720px content block */}
-          <div className="mx-auto max-w-[720px]">
-            {/* Note: Single caption pill is rendered by HeroSlideshow at top center; duplicate 2nd pill removed */}
-            <h1
-              className="font-heading font-extrabold tracking-tight text-white heading-hero-shadow"
-              style={{ fontSize: 'clamp(2.25rem, 5vw, 4rem)', lineHeight: 1.1 }}
-            >
-              Invest with Commercial <br />
-              <span className="text-white font-extrabold underline decoration-accent-500 decoration-[5px] underline-offset-8">
-                Clarity & Precision
-              </span>
-            </h1>
+              {/* H1 & Subtext with Animated Vertical Reflection Line */}
+              <div className="relative pl-5 sm:pl-6 my-1">
+                {/* Vertical reflection line: Up-to-down animation, alternating Blue and Red */}
+                <div
+                  className="absolute left-0 top-1.5 bottom-1.5 w-[3.5px] rounded-full bg-line-200/90 overflow-hidden"
+                  aria-hidden="true"
+                >
+                  <div className="hero-reflect-beam" />
+                </div>
 
-            <p className="mt-6 text-[18px] sm:text-[20px] text-white/95 font-medium leading-relaxed max-w-2xl mx-auto drop-shadow-md">
-              Independent advisory for Grade A offices, retail promenades, SCO plots, and pre-leased assets backed by
-              location research, footfall due diligence, and financial analysis.
-            </p>
+                {/* H1 - Max 2 lines */}
+                <h1
+                  className="font-heading font-bold tracking-normal text-ink-900"
+                  style={{ fontSize: 'clamp(2rem, 3.6vw, 3.25rem)', lineHeight: 1.15 }}
+                >
+                  Invest in Commercial Property with <span className="text-red-600">Clarity &amp; Precision</span>
+                </h1>
 
-            {/* Quick CTAs */}
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
-              <Link
-                href="/projects"
-                className="coral-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold shadow-xl"
-              >
-                <span>Find Commercial Properties</span>
-                <ArrowRight className="size-4" />
-              </Link>
-              <Link
-                href="/compare"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold bg-primary-900/85 hover:bg-primary-700 text-white backdrop-blur-md border border-white/25 transition-all shadow-md"
-              >
-                <Building2 className="size-4 text-accent-500" />
-                <span>Compare Projects Side-by-Side</span>
-              </Link>
+                {/* Subtext 17-18px, weight 400, line-height 1.6, muted-600, max 2-3 lines */}
+                <p className="mt-4 text-[17px] sm:text-[18px] text-muted-600 font-normal leading-[1.6] max-w-[540px]">
+                  Independent research-led advisory for Grade A offices, high-street retail, SCO plots, and pre-leased assets backed by location due diligence and financial analysis.
+                </p>
+              </div>
+
+              {/* 2 Buttons */}
+              <div className="mt-6 sm:mt-7 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <Link
+                  href="/projects"
+                  className="red-btn inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold shadow-md tracking-wide"
+                >
+                  <span>Find Commercial Properties</span>
+                  <ArrowRight className="size-4" />
+                </Link>
+                <Link
+                  href="/compare"
+                  className="blue-outline-btn inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold tracking-wide"
+                >
+                  <Building2 className="size-4" />
+                  <span>Compare Projects</span>
+                </Link>
+              </div>
+
+              {/* 3 Trust Points */}
+              <div className="mt-8 pt-6 border-t border-line-200 grid grid-cols-3 gap-2 sm:gap-4 text-xs font-medium text-ink-900/90">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="size-4 text-blue-600 shrink-0" />
+                  <span>Independent advisory</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Compass className="size-4 text-blue-600 shrink-0" />
+                  <span>Location research</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <TrendingUp className="size-4 text-blue-600 shrink-0" />
+                  <span>Financial analysis</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: ~52% on desktop */}
+            <div className="w-full lg:w-[52%] order-2">
+              <HeroSlideshow />
             </div>
           </div>
 
-          {/* Overlapping Glassmorphism Search Filter Card */}
-          <HeroSearchCard />
+          {/* Search Filter Bar Below Hero */}
+          <div className="mt-8 sm:mt-12">
+            <HeroSearchCard />
+          </div>
         </div>
       </section>
 
-      {/* Property Categories Asymmetric Mosaic (Light: sand-50) */}
+      {/* Property Categories Asymmetric Mosaic (White) */}
       <CategoryMosaic />
 
-      {/* Sticky Investment Goals Section (Dark: primary-900) */}
+      {/* Sticky Investment Goals Section (Blue-50) */}
       <StickyInvestmentGoals />
 
-      {/* Featured Projects Showcase (Light: sand-100) */}
+      {/* Featured Projects Showcase (White) */}
       <FeaturedProjectsShowcase projects={allProjects} />
 
-      {/* Verified Research Stats & Diligence Checkpoints with Counters (Dark: primary-900) */}
+      {/* Verified Research Stats & Diligence Checkpoints with Counters (Blue-50) */}
       <StatsCounter />
 
-      {/* Commercial Corridors Hub (Light: sand-50) */}
-      <section className="py-20 sm:py-28 bg-sand-50 border-t border-border">
+      {/* Commercial Corridors Hub (White) */}
+      <section className="py-10 sm:py-14 bg-white border-t border-line-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 sm:mb-16 gap-6">
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-900/5 border border-primary-900/10 text-primary-900 text-xs font-semibold uppercase tracking-wider mb-3">
-                <Compass className="size-3 text-accent-500" />
-                Corridor Intelligence
-              </div>
-              <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-5xl text-primary-900">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 sm:mb-8 gap-4 pb-4 border-b border-line-200">
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-ink-900">
                 Key Commercial Corridors
               </h2>
-              <p className="mt-4 text-base sm:text-lg text-muted-600 leading-relaxed">
-                Understand connectivity, footfall drivers, upcoming infrastructure, and average commercial yields across
-                Gurgaon&apos;s most active commercial micro-markets.
-              </p>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 border border-blue-300/40 text-blue-600 text-xs font-semibold uppercase tracking-wider">
+                <Compass className="size-3 text-blue-600" />
+                Corridor Intelligence
+              </span>
             </div>
-            <Link
-              href="/locations"
-              className="inline-flex items-center gap-2 text-sm font-bold text-primary-900 hover:text-accent-500 transition-colors group"
-            >
-              <span>Explore All 7 Corridors</span>
-              <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <div className="flex items-center gap-6">
+              <p className="hidden lg:block text-xs sm:text-sm text-muted-600 max-w-md">
+                Connectivity, infrastructure pipelines &amp; average yields across Gurgaon micro-markets.
+              </p>
+              <Link
+                href="/locations"
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-blue-600 hover:text-red-600 transition-colors shrink-0 group"
+              >
+                <span>Explore All 7 Corridors</span>
+                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -160,9 +198,9 @@ export default function HomePage() {
               <Link
                 key={loc.slug}
                 href={`/locations/${loc.slug}`}
-                className="group rounded-2xl border border-border bg-white overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                className="group rounded-2xl border border-line-200 bg-white overflow-hidden shadow-sm hover:shadow-[0_8px_30px_rgba(20,33,61,0.08)] transition-all duration-300 flex flex-col justify-between"
               >
-                <div className="relative aspect-[16/9] overflow-hidden bg-primary-900">
+                <div className="relative aspect-[16/9] overflow-hidden bg-blue-50">
                   <Image
                     src={loc.image}
                     alt={loc.name}
@@ -170,10 +208,10 @@ export default function HomePage() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary-900/80 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white text-xs">
                     <span className="font-semibold text-white">{loc.shortName}</span>
-                    <span className="bg-primary-900/90 px-2 py-0.5 rounded text-[11px] text-sand-50 font-medium">
+                    <span className="bg-white/95 text-ink-900 px-2 py-0.5 rounded text-[11px] font-medium shadow-sm">
                       {loc.categories.length} Asset Types
                     </span>
                   </div>
@@ -181,7 +219,7 @@ export default function HomePage() {
 
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="font-heading text-xl font-bold text-primary-900 group-hover:text-accent-500 transition-colors">
+                    <h3 className="font-heading text-xl font-bold text-ink-900 group-hover:text-blue-600 transition-colors">
                       {loc.name}
                     </h3>
                     <p className="mt-2 text-xs sm:text-sm text-muted-600 line-clamp-2 leading-relaxed">
@@ -189,9 +227,9 @@ export default function HomePage() {
                     </p>
                   </div>
 
-                  <div className="mt-5 pt-4 border-t border-border flex items-center justify-between text-xs">
+                  <div className="mt-5 pt-4 border-t border-line-200 flex items-center justify-between text-xs">
                     <span className="text-muted-600 font-medium">Corridor Analysis</span>
-                    <span className="font-bold text-primary-900 group-hover:text-accent-500 flex items-center gap-1 transition-colors">
+                    <span className="font-bold text-blue-600 group-hover:text-red-600 flex items-center gap-1 transition-colors">
                       Read Report &rarr;
                     </span>
                   </div>
@@ -202,20 +240,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Commercial Calculators Preview (Light: sand-100) */}
-      <section className="py-20 sm:py-28 bg-sand-100 border-t border-border">
+      {/* Commercial Calculators Preview (Blue-50) */}
+      <section className="py-10 sm:py-14 bg-blue-50 border-t border-line-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-900/5 border border-primary-900/10 text-primary-900 text-xs font-semibold uppercase tracking-wider mb-3">
-              <Calculator className="size-3 text-accent-500" />
-              Financial Tools
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 sm:mb-8 gap-4 pb-4 border-b border-line-200">
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-ink-900">
+                Commercial Investment Calculators
+              </h2>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 border border-blue-300/40 text-blue-600 text-xs font-semibold uppercase tracking-wider">
+                <Calculator className="size-3 text-blue-600" />
+                Financial Tools
+              </span>
             </div>
-            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-5xl text-primary-900">
-              Commercial Investment Calculators
-            </h2>
-            <p className="mt-4 text-base sm:text-lg text-muted-600 leading-relaxed">
-              Transparent financial modelling tools to estimate rental yields, EMI commitments, SCO payback periods, and
-              stamp duty costs before committing capital.
+            <p className="text-xs sm:text-sm text-muted-600 max-w-md md:text-right">
+              Transparent financial modelling tools to estimate rental yields, EMI commitments, SCO payback, and stamp duty.
             </p>
           </div>
 
@@ -255,20 +294,20 @@ export default function HomePage() {
               <Link
                 key={calc.href}
                 href={calc.href}
-                className="group flex flex-col justify-between rounded-2xl border border-border bg-white p-7 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-accent-500/50"
+                className="group flex flex-col justify-between rounded-2xl border border-line-200 bg-white p-7 shadow-sm hover:shadow-[0_8px_30px_rgba(20,33,61,0.08)] transition-all duration-300 hover:border-blue-300"
               >
                 <div>
-                  <div className="size-12 rounded-xl bg-primary-900 text-white flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-                    <Calculator className="size-6 text-accent-500" />
+                  <div className="size-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+                    <Calculator className="size-6 text-blue-600" />
                   </div>
-                  <h3 className="font-heading text-xl font-bold text-primary-900 group-hover:text-accent-500 transition-colors">
+                  <h3 className="font-heading text-xl font-bold text-ink-900 group-hover:text-blue-600 transition-colors">
                     {calc.title}
                   </h3>
                   <p className="mt-2 text-xs sm:text-sm text-muted-600 leading-relaxed">
                     {calc.desc}
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-xs font-bold text-accent-500 uppercase tracking-wider">
+                <div className="mt-6 pt-4 border-t border-line-200 flex items-center justify-between text-xs font-bold text-red-600 uppercase tracking-wider">
                   <span>Calculate Now</span>
                   <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -278,29 +317,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Latest Insights & Market Reports (Light: sand-50) */}
-      <section className="py-20 sm:py-28 bg-sand-50 border-t border-border">
+      {/* Latest Insights & Market Reports (White) */}
+      <section className="py-10 sm:py-14 bg-white border-t border-line-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 sm:mb-16 gap-6">
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-900/5 border border-primary-900/10 text-primary-900 text-xs font-semibold uppercase tracking-wider mb-3">
-                <BookOpen className="size-3 text-accent-500" />
-                Market Intelligence
-              </div>
-              <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-5xl text-primary-900">
-                Latest Research & Market Reports
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 sm:mb-8 gap-4 pb-4 border-b border-line-200">
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-ink-900">
+                Latest Research &amp; Market Reports
               </h2>
-              <p className="mt-4 text-base sm:text-lg text-muted-600 leading-relaxed">
-                In-depth analysis on commercial trends, SCO plots, retail rental dynamics, and micro-market growth drivers.
-              </p>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 border border-blue-300/40 text-blue-600 text-xs font-semibold uppercase tracking-wider">
+                <BookOpen className="size-3 text-blue-600" />
+                Market Intelligence
+              </span>
             </div>
-            <Link
-              href="/insights"
-              className="inline-flex items-center gap-2 text-sm font-bold text-primary-900 hover:text-accent-500 transition-colors group"
-            >
-              <span>View All Insights</span>
-              <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <div className="flex items-center gap-6">
+              <p className="hidden lg:block text-xs sm:text-sm text-muted-600 max-w-md">
+                In-depth commercial trend analysis, retail dynamics, and micro-market growth drivers.
+              </p>
+              <Link
+                href="/insights"
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-blue-600 hover:text-red-600 transition-colors shrink-0 group"
+              >
+                <span>View All Insights</span>
+                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -308,9 +349,9 @@ export default function HomePage() {
               <Link
                 key={article.slug}
                 href={`/insights/${article.category}/${article.slug}`}
-                className="group rounded-2xl border border-border bg-white overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                className="group rounded-2xl border border-line-200 bg-white overflow-hidden shadow-sm hover:shadow-[0_8px_30px_rgba(20,33,61,0.08)] transition-all duration-300 flex flex-col justify-between"
               >
-                <div className="relative aspect-[16/9] overflow-hidden bg-primary-900">
+                <div className="relative aspect-[16/9] overflow-hidden bg-blue-50">
                   <Image
                     src={article.image}
                     alt={article.imageAlt}
@@ -319,7 +360,7 @@ export default function HomePage() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <div className="absolute top-3 left-3">
-                    <span className="inline-block px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-primary-900/90 text-white border border-white/20">
+                    <span className="inline-block px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-blue-100 text-blue-700 border border-blue-200 shadow-sm">
                       {article.category.replace(/-/g, ' ')}
                     </span>
                   </div>
@@ -327,7 +368,7 @@ export default function HomePage() {
 
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="font-heading text-xl font-bold text-primary-900 group-hover:text-accent-500 transition-colors line-clamp-2">
+                    <h3 className="font-heading text-xl font-bold text-ink-900 group-hover:text-blue-600 transition-colors line-clamp-2">
                       {article.title}
                     </h3>
                     <p className="mt-2 text-xs sm:text-sm text-muted-600 line-clamp-2 leading-relaxed">
@@ -335,7 +376,7 @@ export default function HomePage() {
                     </p>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-xs text-muted-600 font-medium">
+                  <div className="mt-6 pt-4 border-t border-line-200 flex items-center justify-between text-xs text-muted-600 font-medium">
                     <span>{article.readingMinutes} min read</span>
                     <span>
                       {new Date(article.publishedAt).toLocaleDateString('en-IN', {
@@ -352,32 +393,60 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Personalized Shortlist Enquiry Section (Dark: primary-900) */}
-      <section id="shortlist" className="py-20 sm:py-28 bg-primary-900 text-white relative overflow-hidden">
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-xs font-semibold uppercase tracking-wider mb-4">
-              <ShieldCheck className="size-3.5 text-accent-500" />
-              Direct Advisory Access
-            </div>
-            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-5xl text-white">
-              Request Your Commercial Shortlist
-            </h2>
-            <p className="mt-4 text-base sm:text-lg text-sand-50/85 leading-relaxed">
-              Share your target budget, corridor preference, and commercial objective. Our advisory team will assemble
-              a verified property shortlist with complete financial due diligence.
-            </p>
-          </div>
+      {/* Personalized Shortlist Enquiry Section (Blue-50) — Compact Side-by-Side Fit */}
+      <section id="shortlist" className="py-12 sm:py-16 bg-blue-50 text-ink-900 relative border-t border-line-200">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Column: Heading, Value Proposition & Trust Highlights (~5 cols) */}
+            <div className="lg:col-span-5 text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 border border-blue-300/40 text-blue-600 text-xs font-semibold uppercase tracking-wider mb-3.5 shadow-sm">
+                <ShieldCheck className="size-3.5 text-blue-600" />
+                Direct Advisory Access
+              </div>
+              <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-ink-900 leading-tight">
+                Request Your Commercial Shortlist
+              </h2>
+              <p className="mt-3 text-sm sm:text-base text-muted-600 leading-relaxed">
+                Share your target budget, corridor preference, and commercial objective. Our advisory team will assemble
+                a verified property shortlist with complete financial due diligence.
+              </p>
 
-          <div className="mx-auto max-w-2xl bg-sand-50 rounded-3xl p-6 sm:p-10 shadow-2xl border border-white/10 text-ink-900">
-            <EnquiryForm
-              formType="shortlist"
-              showBudget
-              showLocation
-              showGoal
-              submitLabel="Get My Personalized Shortlist"
-              messagePlaceholder="Share any specific requirements (e.g. minimum 1,500 sq.ft., pre-leased to bank, immediate possession, etc.)"
-            />
+              {/* 3 Value Checkpoints */}
+              <div className="mt-6 pt-5 border-t border-line-200/80 space-y-3">
+                <div className="flex items-center gap-2.5 text-xs sm:text-sm font-medium text-ink-900">
+                  <div className="size-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
+                    <ShieldCheck className="size-3.5 text-blue-600" />
+                  </div>
+                  <span>100% Unbiased advisory &amp; verified title diligence</span>
+                </div>
+                <div className="flex items-center gap-2.5 text-xs sm:text-sm font-medium text-ink-900">
+                  <div className="size-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
+                    <TrendingUp className="size-3.5 text-blue-600" />
+                  </div>
+                  <span>Real rental yield &amp; cashflow modeling</span>
+                </div>
+                <div className="flex items-center gap-2.5 text-xs sm:text-sm font-medium text-ink-900">
+                  <div className="size-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
+                    <Compass className="size-3.5 text-blue-600" />
+                  </div>
+                  <span>Curated Gurgaon options delivered within 2 business hours</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Compact Form Card (~7 cols) */}
+            <div className="lg:col-span-7">
+              <div className="bg-white rounded-3xl p-5 sm:p-7 shadow-[0_12px_36px_rgba(20,33,61,0.08)] border border-line-200 text-ink-900">
+                <EnquiryForm
+                  formType="shortlist"
+                  showBudget
+                  showLocation
+                  showGoal
+                  submitLabel="Get My Personalized Shortlist"
+                  messagePlaceholder="Share any specific requirements (e.g. minimum 1,500 sq.ft., pre-leased to bank, immediate possession, etc.)"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>

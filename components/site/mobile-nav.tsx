@@ -54,32 +54,32 @@ export function MobileNav() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="xl:hidden p-2 sm:p-2.5 rounded-xl text-white hover:bg-primary-700/60 transition-colors focus:outline-none focus:ring-2 focus:ring-accent-500/50 shrink-0"
+        className="lg:hidden p-2 sm:p-2.5 rounded-xl text-ink-900 hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600/30 shrink-0"
         aria-label="Open primary menu"
         aria-expanded={open}
       >
         <Menu className="size-6" />
       </button>
 
-      {/* Slide-in Mobile Drawer */}
+      {/* Slide-in Full-Screen White Mobile Drawer */}
       {open && (
         <div
-          className="fixed inset-0 z-50 flex xl:hidden bg-black/75 backdrop-blur-sm animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex lg:hidden bg-ink-900/30 backdrop-blur-sm animate-in fade-in duration-200"
           onClick={close}
           role="dialog"
           aria-modal="true"
         >
           <div
-            className="ml-auto w-full max-w-sm h-full bg-primary-900 text-white flex flex-col shadow-2xl border-l border-primary-700 animate-in slide-in-from-right duration-300"
+            className="ml-auto w-full max-w-sm h-full bg-white text-ink-900 flex flex-col shadow-2xl border-l border-line-200 animate-in slide-in-from-right duration-300"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-primary-700/80">
-              <Logo inverted={true} compact={true} />
+            <div className="flex items-center justify-between p-4 border-b border-line-200">
+              <Logo inverted={false} compact={true} />
               <button
                 type="button"
                 onClick={close}
-                className="p-2 rounded-full text-white/80 hover:text-white hover:bg-primary-700/60 focus:outline-none"
+                className="p-2 rounded-full text-ink-900 hover:bg-blue-50 focus:outline-none"
                 aria-label="Close menu"
               >
                 <X className="size-6" />
@@ -91,23 +91,23 @@ export function MobileNav() {
               <Link
                 href="/"
                 onClick={close}
-                className="block py-3 px-3 text-base font-semibold rounded-lg hover:bg-primary-700/60 transition-colors"
+                className="block py-3 px-3 text-base font-semibold rounded-xl hover:bg-blue-50 transition-colors text-ink-900 hover:text-blue-600"
               >
                 Home
               </Link>
 
               {/* Properties Accordion */}
-              <div className="border-b border-primary-700/40 pb-1">
+              <div className="border-b border-line-200/60 pb-1">
                 <button
                   type="button"
                   onClick={() => setPropertiesOpen(!propertiesOpen)}
-                  className="w-full flex items-center justify-between py-3 px-3 text-base font-semibold rounded-lg hover:bg-primary-700/60 text-left transition-colors"
+                  className="w-full flex items-center justify-between py-3 px-3 text-base font-semibold rounded-xl hover:bg-blue-50 text-left transition-colors text-ink-900"
                   aria-expanded={propertiesOpen}
                 >
                   <span>Properties</span>
                   <ChevronDown
                     className={cn(
-                      'size-4 text-accent-500 transition-transform duration-200',
+                      'size-4 text-blue-600 transition-transform duration-200',
                       propertiesOpen && 'rotate-180'
                     )}
                   />
@@ -121,9 +121,9 @@ export function MobileNav() {
                           key={p.href}
                           href={p.href}
                           onClick={close}
-                          className="flex items-center gap-2.5 py-2.5 px-3 text-sm text-sand-50/85 hover:text-accent-500 hover:bg-primary-700/40 rounded-lg transition-colors"
+                          className="flex items-center gap-2.5 py-2.5 px-3 text-sm text-ink-900/85 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                         >
-                          <Icon className="size-4 text-accent-500" />
+                          <Icon className="size-4 text-blue-600" />
                           <span>{p.label}</span>
                         </Link>
                       )
@@ -133,17 +133,17 @@ export function MobileNav() {
               </div>
 
               {/* Locations Accordion */}
-              <div className="border-b border-primary-700/40 pb-1">
+              <div className="border-b border-line-200/60 pb-1">
                 <button
                   type="button"
                   onClick={() => setLocationsOpen(!locationsOpen)}
-                  className="w-full flex items-center justify-between py-3 px-3 text-base font-semibold rounded-lg hover:bg-primary-700/60 text-left transition-colors"
+                  className="w-full flex items-center justify-between py-3 px-3 text-base font-semibold rounded-xl hover:bg-blue-50 text-left transition-colors text-ink-900"
                   aria-expanded={locationsOpen}
                 >
                   <span>Locations</span>
                   <ChevronDown
                     className={cn(
-                      'size-4 text-accent-500 transition-transform duration-200',
+                      'size-4 text-blue-600 transition-transform duration-200',
                       locationsOpen && 'rotate-180'
                     )}
                   />
@@ -155,16 +155,16 @@ export function MobileNav() {
                         key={loc.href}
                         href={loc.href}
                         onClick={close}
-                        className="flex items-center gap-2 py-2 px-3 text-sm text-sand-50/85 hover:text-accent-500 hover:bg-primary-700/40 rounded-lg transition-colors"
+                        className="flex items-center gap-2 py-2 px-3 text-sm text-ink-900/85 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                       >
-                        <MapPin className="size-3.5 text-accent-500" />
+                        <MapPin className="size-3.5 text-blue-600" />
                         <span>{loc.label}</span>
                       </Link>
                     ))}
                     <Link
                       href="/locations"
                       onClick={close}
-                      className="block py-2 px-3 text-xs font-bold text-accent-500 hover:underline"
+                      className="block py-2 px-3 text-xs font-bold text-red-600 hover:underline"
                     >
                       View All Corridors &rarr;
                     </Link>
@@ -175,7 +175,7 @@ export function MobileNav() {
               <Link
                 href="/commercial-property-for-investment-in-gurgaon"
                 onClick={close}
-                className="block py-3 px-3 text-base font-semibold rounded-lg hover:bg-primary-700/60 transition-colors"
+                className="block py-3 px-3 text-base font-semibold rounded-xl hover:bg-blue-50 transition-colors text-ink-900 hover:text-blue-600"
               >
                 Investment Assets
               </Link>
@@ -183,7 +183,7 @@ export function MobileNav() {
               <Link
                 href="/compare"
                 onClick={close}
-                className="block py-3 px-3 text-base font-semibold rounded-lg hover:bg-primary-700/60 transition-colors"
+                className="block py-3 px-3 text-base font-semibold rounded-xl hover:bg-blue-50 transition-colors text-ink-900 hover:text-blue-600"
               >
                 Compare Projects
               </Link>
@@ -191,7 +191,7 @@ export function MobileNav() {
               <Link
                 href="/insights"
                 onClick={close}
-                className="block py-3 px-3 text-base font-semibold rounded-lg hover:bg-primary-700/60 transition-colors"
+                className="block py-3 px-3 text-base font-semibold rounded-xl hover:bg-blue-50 transition-colors text-ink-900 hover:text-blue-600"
               >
                 Insights & Reports
               </Link>
@@ -199,7 +199,7 @@ export function MobileNav() {
               <Link
                 href="/tools"
                 onClick={close}
-                className="block py-3 px-3 text-base font-semibold rounded-lg hover:bg-primary-700/60 transition-colors"
+                className="block py-3 px-3 text-base font-semibold rounded-xl hover:bg-blue-50 transition-colors text-ink-900 hover:text-blue-600"
               >
                 Investment Calculators
               </Link>
@@ -207,7 +207,7 @@ export function MobileNav() {
               <Link
                 href="/about"
                 onClick={close}
-                className="block py-3 px-3 text-base font-semibold rounded-lg hover:bg-primary-700/60 transition-colors"
+                className="block py-3 px-3 text-base font-semibold rounded-xl hover:bg-blue-50 transition-colors text-ink-900 hover:text-blue-600"
               >
                 About Smartz Spaces
               </Link>
@@ -215,18 +215,18 @@ export function MobileNav() {
               <Link
                 href="/contact"
                 onClick={close}
-                className="block py-3 px-3 text-base font-semibold rounded-lg hover:bg-primary-700/60 transition-colors"
+                className="block py-3 px-3 text-base font-semibold rounded-xl hover:bg-blue-50 transition-colors text-ink-900 hover:text-blue-600"
               >
                 Contact Advisory Team
               </Link>
             </div>
 
             {/* Pinned Bottom CTA & WhatsApp Desk */}
-            <div className="p-4 border-t border-primary-700 bg-primary-900/98 space-y-2.5">
+            <div className="p-4 border-t border-line-200 bg-white space-y-2.5">
               <Link
                 href="/contact#shortlist"
                 onClick={close}
-                className="coral-btn flex items-center justify-center gap-2 w-full py-3 rounded-xl text-base font-bold shadow-xl"
+                className="red-btn flex items-center justify-center gap-2 w-full py-3 rounded-xl text-base font-semibold shadow-md"
               >
                 <span>Get My Shortlist</span>
               </Link>
@@ -234,16 +234,16 @@ export function MobileNav() {
               <div className="grid grid-cols-2 gap-2">
                 <a
                   href={`tel:${phone.tel}`}
-                  className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg bg-primary-700 hover:bg-primary-700/80 text-xs font-semibold text-white border border-white/10"
+                  className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-blue-50 hover:bg-blue-100 text-xs font-semibold text-ink-900 border border-line-200 transition-colors"
                 >
-                  <Phone className="size-3.5 text-accent-500" />
+                  <Phone className="size-3.5 text-blue-600" />
                   <span>Call Us</span>
                 </a>
                 <a
                   href={whatsappHref()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg bg-emerald-600/30 hover:bg-emerald-600/40 text-xs font-semibold text-emerald-300 border border-emerald-500/30"
+                  className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-blue-100 hover:bg-blue-200 text-xs font-semibold text-blue-700 border border-blue-200 transition-colors"
                 >
                   <MessageCircle className="size-3.5" />
                   <span>WhatsApp</span>

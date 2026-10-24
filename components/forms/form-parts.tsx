@@ -134,7 +134,7 @@ export function NativeSelect({
 
 export function SubmitButton({ pending, children, className }: { pending: boolean; children: React.ReactNode; className?: string }) {
   return (
-    <Button type="submit" size="lg" disabled={pending} aria-disabled={pending} className={cn('h-11 px-5', className)}>
+    <Button type="submit" size="lg" disabled={pending} aria-disabled={pending} className={cn('!bg-red-600 hover:!bg-red-700 !text-white h-11 px-6 rounded-xl text-sm font-semibold shadow-md transition-all', className)}>
       {pending && <Loader2 className="animate-spin" aria-hidden="true" />}
       {pending ? 'Submitting…' : children}
     </Button>

@@ -132,24 +132,33 @@ export function LogoMark({
 export function Logo({
   inverted = false,
   compact = false,
+  isScrolled = false,
 }: {
   inverted?: boolean
   compact?: boolean
+  isScrolled?: boolean
 }) {
   return (
     <Link
       href="/"
-      className="flex items-center gap-3 group shrink-0 transition-opacity hover:opacity-95"
+      className="flex items-center gap-2.5 sm:gap-3 group shrink-0 transition-all duration-300 hover:opacity-95"
       aria-label="Smartz Spaces - Commercial Real Estate Intelligence"
     >
       {/* 3D Multi-faceted Skyscraper Emblem */}
-      <LogoMark inverted={inverted} className="group-hover:scale-105 transition-transform duration-200" />
+      <LogoMark
+        inverted={inverted}
+        className={cn(
+          'transition-all duration-300 group-hover:scale-105',
+          isScrolled ? 'h-8 sm:h-9' : 'h-10 sm:h-11'
+        )}
+      />
 
-      {/* Vertical Hairline Divider (hidden on xs mobile) */}
+      {/* Vertical Hairline Divider */}
       <div
         className={cn(
-          'hidden sm:block h-9 w-[1.5px] shrink-0 transition-colors',
-          inverted ? 'bg-white/40' : 'bg-slate-300'
+          'hidden sm:block w-[1.5px] shrink-0 transition-all duration-300',
+          isScrolled ? 'h-7' : 'h-8 sm:h-9',
+          inverted ? 'bg-white/40' : 'bg-line-200'
         )}
         aria-hidden="true"
       />
@@ -160,37 +169,43 @@ export function Logo({
         <div className="flex items-baseline tracking-normal">
           <span
             className={cn(
-              'font-extrabold text-[19px] sm:text-[23px] tracking-tight transition-colors',
-              inverted ? 'text-white' : 'text-primary-900'
+              'font-extrabold tracking-tight transition-all duration-300',
+              isScrolled ? 'text-[17px] sm:text-[20px]' : 'text-[19px] sm:text-[23px]',
+              inverted ? 'text-white' : 'text-ink-900'
             )}
-            style={{ fontFamily: "var(--font-heading), 'Plus Jakarta Sans', sans-serif" }}
+            style={{ fontFamily: "var(--font-heading), 'Poppins', sans-serif" }}
           >
             SMARTZ
           </span>
           <span
-            className="ml-1 sm:ml-1.5 font-light text-[19px] sm:text-[23px] tracking-wide text-[#E5192D]"
-            style={{ fontFamily: "var(--font-heading), 'Plus Jakarta Sans', sans-serif" }}
+            className={cn(
+              'ml-1 sm:ml-1.5 font-bold tracking-wide text-red-600 transition-all duration-300',
+              isScrolled ? 'text-[17px] sm:text-[20px]' : 'text-[19px] sm:text-[23px]'
+            )}
+            style={{ fontFamily: "var(--font-heading), 'Poppins', sans-serif" }}
           >
             SPACES
           </span>
         </div>
 
-        {/* COMMERCIAL REAL ESTATE INTELLIGENCE (visible on sm+ screens) */}
+        {/* COMMERCIAL REAL ESTATE INTELLIGENCE: Always visible below SMARTZ SPACES */}
         {!compact && (
-          <div className="mt-1 hidden sm:flex flex-col">
+          <div className="mt-0.5 flex flex-col transition-all duration-300">
             <span
               className={cn(
-                'text-[8px] sm:text-[9px] font-semibold uppercase tracking-[0.18em] transition-colors whitespace-nowrap',
-                inverted ? 'text-white/85' : 'text-slate-600'
+                'font-semibold uppercase transition-colors whitespace-nowrap',
+                isScrolled
+                  ? 'text-[7.5px] sm:text-[8px] tracking-[0.12em] sm:tracking-[0.15em]'
+                  : 'text-[8px] sm:text-[9.5px] tracking-[0.14em] sm:tracking-[0.18em]',
+                inverted ? 'text-white/85' : 'text-muted-600'
               )}
             >
               Commercial Real Estate Intelligence
             </span>
-            {/* Flanking underline bar */}
             <div
               className={cn(
                 'mt-0.5 h-[1px] w-full transition-colors',
-                inverted ? 'bg-white/30' : 'bg-slate-300'
+                inverted ? 'bg-white/30' : 'bg-line-200'
               )}
               aria-hidden="true"
             />

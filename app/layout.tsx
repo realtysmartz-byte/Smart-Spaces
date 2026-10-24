@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Plus_Jakarta_Sans, DM_Sans } from 'next/font/google'
+import { Inter, Poppins } from 'next/font/google'
 import { siteConfig } from '@/lib/site-config'
 import { SiteHeader } from '@/components/site/header'
 import { SiteFooter } from '@/components/site/footer'
@@ -7,16 +7,16 @@ import { Analytics } from '@/components/site/analytics'
 import { JsonLd } from '@/components/seo/json-ld'
 import './globals.css'
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-sans',
   display: 'swap',
 })
 
-const jakarta = Plus_Jakarta_Sans({
+const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['600', '700', '800'],
+  weight: ['600', '700'],
   variable: '--font-heading',
   display: 'swap',
 })
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#111315',
+  themeColor: '#FFFFFF',
   width: 'device-width',
   initialScale: 1,
 }
@@ -106,10 +106,10 @@ const webSiteSchema = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-IN" className={`${dmSans.variable} ${jakarta.variable} bg-background font-sans`}>
+    <html lang="en-IN" className={`${inter.variable} ${poppins.variable} bg-background font-sans`}>
       <body className="min-h-dvh antialiased flex flex-col">
         <SiteHeader />
-        <main id="main" className="flex-1">{children}</main>
+        <main id="main" className="flex-1 pt-[72px]">{children}</main>
         <SiteFooter />
         <Analytics />
         <JsonLd data={organizationSchema} />

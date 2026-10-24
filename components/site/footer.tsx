@@ -48,48 +48,48 @@ export function SiteFooter() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-primary-900 text-sand-50 border-t border-primary-700/80">
+    <footer className="bg-blue-50 text-ink-900 border-t border-line-200">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.3fr_2fr]">
           {/* Brand Info */}
           <div className="flex flex-col gap-6">
-            <Logo inverted={true} />
-            <p className="max-w-sm text-sm leading-relaxed text-sand-50/80">
+            <Logo inverted={false} />
+            <p className="max-w-sm text-sm leading-relaxed text-ink-900/80">
               Independent commercial real estate advisory for Gurgaon and Delhi NCR. We assist investors and corporate
               occupiers with Grade A offices, high-street retail, SCO plots, and pre-leased assets backed by financial
               and location intelligence.
             </p>
-            <div className="text-xs text-accent-500 font-bold tracking-wide">
+            <div className="text-xs text-blue-600 font-bold tracking-wide">
               Powered by {siteConfig.poweredBy}
             </div>
 
-            <address className="flex flex-col gap-3 text-sm not-italic text-sand-50/85">
+            <address className="flex flex-col gap-3 text-sm not-italic text-ink-900/85">
               <span className="flex items-start gap-2.5">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-accent-500" aria-hidden="true" />
+                <MapPin className="mt-0.5 size-4 shrink-0 text-blue-600" aria-hidden="true" />
                 <span className="leading-snug">{fullAddress()}</span>
               </span>
               {siteConfig.contact.phones.map((p) => (
                 <a
                   key={p.tel}
                   href={`tel:${p.tel}`}
-                  className="flex items-center gap-2.5 hover:text-white transition-colors"
+                  className="flex items-center gap-2.5 hover:text-blue-600 transition-colors"
                 >
-                  <Phone className="size-4 shrink-0 text-accent-500" aria-hidden="true" />
+                  <Phone className="size-4 shrink-0 text-blue-600" aria-hidden="true" />
                   <span>{p.display}</span>
                 </a>
               ))}
               <a
                 href={`mailto:${siteConfig.contact.email}`}
-                className="flex items-center gap-2.5 hover:text-white transition-colors"
+                className="flex items-center gap-2.5 hover:text-blue-600 transition-colors"
               >
-                <Mail className="size-4 shrink-0 text-accent-500" aria-hidden="true" />
+                <Mail className="size-4 shrink-0 text-blue-600" aria-hidden="true" />
                 <span>{siteConfig.contact.email}</span>
               </a>
               <a
                 href={whatsappHref()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-emerald-400 hover:text-emerald-300 transition-colors"
+                className="flex items-center gap-2.5 text-blue-600 hover:text-red-600 transition-colors font-medium"
               >
                 <MessageCircle className="size-4 shrink-0" aria-hidden="true" />
                 <span>WhatsApp Commercial Desk</span>
@@ -101,7 +101,7 @@ export function SiteFooter() {
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {columns.map((col) => (
               <nav key={col.title} aria-label={col.title}>
-                <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-accent-500">
+                <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-blue-600">
                   {col.title}
                 </h3>
                 <ul className="mt-4 flex flex-col gap-2.5">
@@ -109,7 +109,7 @@ export function SiteFooter() {
                     <li key={l.href}>
                       <Link
                         href={l.href}
-                        className="text-xs sm:text-sm text-sand-50/75 hover:text-white transition-colors"
+                        className="text-xs sm:text-sm text-ink-900/75 hover:text-blue-600 transition-colors"
                       >
                         {l.label}
                       </Link>
@@ -121,7 +121,7 @@ export function SiteFooter() {
 
             {/* Locations Column */}
             <nav aria-label="Commercial Corridors">
-              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-accent-500">
+              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-blue-600">
                 Corridors
               </h3>
               <ul className="mt-4 flex flex-col gap-2.5">
@@ -129,7 +129,7 @@ export function SiteFooter() {
                   <li key={l.slug}>
                     <Link
                       href={`/locations/${l.slug}`}
-                      className="text-xs sm:text-sm text-sand-50/75 hover:text-white transition-colors"
+                      className="text-xs sm:text-sm text-ink-900/75 hover:text-blue-600 transition-colors"
                     >
                       {l.shortName}
                     </Link>
@@ -138,7 +138,7 @@ export function SiteFooter() {
                 <li>
                   <Link
                     href="/locations"
-                    className="text-xs sm:text-sm font-semibold text-accent-500 hover:text-accent-600 transition-colors"
+                    className="text-xs sm:text-sm font-semibold text-red-600 hover:underline transition-colors"
                   >
                     View All Corridors &rarr;
                   </Link>
@@ -149,16 +149,16 @@ export function SiteFooter() {
         </div>
 
         {/* Bottom Sub-bar */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-primary-700/60 pt-8 sm:flex-row text-xs text-sand-50/60">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-line-200 pt-8 sm:flex-row text-xs text-muted-600">
           <p>© {year} {siteConfig.name}. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-6">
-            <Link href="/privacy-policy" className="hover:text-white transition-colors">
+            <Link href="/privacy-policy" className="hover:text-blue-600 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-white transition-colors">
+            <Link href="/terms" className="hover:text-blue-600 transition-colors">
               Terms & Conditions
             </Link>
-            <Link href="/disclaimer" className="hover:text-white transition-colors">
+            <Link href="/disclaimer" className="hover:text-blue-600 transition-colors">
               Regulatory Disclaimer
             </Link>
           </div>

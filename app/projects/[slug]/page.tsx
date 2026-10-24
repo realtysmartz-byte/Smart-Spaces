@@ -29,9 +29,32 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   const project = getProject(params.slug)
   if (!project) return { title: 'Project Not Found' }
 
+  const canonicalUrl = `${siteConfig.url}/projects/${project.slug}`
   return {
     title: `${project.name} | Smartz Spaces`,
     description: project.summary,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: `${project.name} | Commercial Real Estate Gurgaon`,
+      description: project.summary,
+      url: canonicalUrl,
+      images: [
+        {
+          url: project.image,
+          width: 1200,
+          height: 630,
+          alt: `${project.name} commercial property in Gurgaon`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${project.name} | Smartz Spaces`,
+      description: project.summary,
+      images: [project.image],
+    },
   }
 }
 

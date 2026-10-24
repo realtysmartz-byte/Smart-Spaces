@@ -26,9 +26,32 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
   const location = getLocation(params.slug)
   if (!location) return { title: 'Location Not Found' }
 
+  const canonicalUrl = `${siteConfig.url}/locations/${location.slug}`
   return {
     title: `${location.name} Commercial Property | Smartz Spaces`,
     description: `${location.summary} Explore commercial property in ${location.name} — offices, retail, SCO and investment opportunities with location analysis.`,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: `${location.name} Commercial Real Estate & Corridors | Smartz Spaces`,
+      description: location.summary,
+      url: canonicalUrl,
+      images: [
+        {
+          url: location.image,
+          width: 1200,
+          height: 630,
+          alt: `${location.name} commercial corridor in Gurgaon`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${location.name} Commercial Property | Smartz Spaces`,
+      description: location.summary,
+      images: [location.image],
+    },
   }
 }
 

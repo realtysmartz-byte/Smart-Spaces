@@ -73,7 +73,7 @@ export function EnquiryForm({
       <input type="hidden" name="sourcePage" value={pathname} />
       {relatedProject && <input type="hidden" name="relatedProject" value={relatedProject} />}
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-3 sm:grid-cols-2">
         <TextField id={`${id}-name`} name="name" label="Full name" autoComplete="name" required error={errors.name} />
         <TextField
           id={`${id}-phone`}
@@ -87,13 +87,16 @@ export function EnquiryForm({
           error={errors.phone}
         />
       </div>
-      <TextField id={`${id}-email`} name="email" label="Email" type="email" autoComplete="email" optional error={errors.email} />
 
-      {(showBudget || showLocation) && (
-        <div className="grid gap-4 sm:grid-cols-2">
-          {showBudget && (
-            <NativeSelect id={`${id}-budget`} name="budget" label="Budget" placeholder="Select budget" options={budgetBands} optional />
-          )}
+      <div className={cn('grid gap-3', showBudget ? 'sm:grid-cols-2' : 'grid-cols-1')}>
+        <TextField id={`${id}-email`} name="email" label="Email" type="email" autoComplete="email" optional error={errors.email} />
+        {showBudget && (
+          <NativeSelect id={`${id}-budget`} name="budget" label="Budget" placeholder="Select budget" options={budgetBands} optional />
+        )}
+      </div>
+
+      {(showLocation || showGoal) && (
+        <div className={cn('grid gap-3', showLocation && showGoal ? 'sm:grid-cols-2' : 'grid-cols-1')}>
           {showLocation && (
             <NativeSelect
               id={`${id}-location`}
@@ -105,14 +108,15 @@ export function EnquiryForm({
               optional
             />
           )}
+          {showGoal && (
+            <NativeSelect id={`${id}-goal`} name="investmentGoal" label="Investment goal" placeholder="Select goal" options={investmentGoals} optional />
+          )}
         </div>
       )}
-      {showGoal && (
-        <NativeSelect id={`${id}-goal`} name="investmentGoal" label="Investment goal" placeholder="Select goal" options={investmentGoals} optional />
-      )}
+
       {showMessage && (
         <Field id={`${id}-message`} label="Message" optional error={errors.message}>
-          <Textarea id={`${id}-message`} name="message" rows={3} placeholder={messagePlaceholder} className="bg-card" maxLength={2000} />
+          <Textarea id={`${id}-message`} name="message" rows={2} placeholder={messagePlaceholder} className="bg-card min-h-[58px]" maxLength={2000} />
         </Field>
       )}
 

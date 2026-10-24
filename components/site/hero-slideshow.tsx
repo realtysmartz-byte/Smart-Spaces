@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
-import { MapPin, Pause, Play } from 'lucide-react'
+import { MapPin, Pause, Play, ShieldCheck } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export interface HeroSlide {
@@ -10,51 +10,44 @@ export interface HeroSlide {
   alt: string
   chip: string
   corridor: string
-  extraOverlayOpacity?: number // Configurable extra scrim for brighter images
 }
 
 export const heroSlides: HeroSlide[] = [
   {
     image: '/images/hero-gurgaon-skyline.png',
     alt: 'Gurgaon commercial skyline and corporate headquarters along Cyber City at dusk',
-    chip: 'Cyber City & DLF Horizon • Institutional Grade A Offices',
+    chip: 'Cyber City & DLF Horizon • Grade A Offices',
     corridor: 'Cyber Hub / DLF Phase 2',
-    extraOverlayOpacity: 0.05,
   },
   {
     image: '/images/hero-golf-course-road.jpg',
     alt: 'Golf Course Road Gurgaon luxury commercial glass skyscrapers at sunset',
-    chip: 'Golf Course Road • Premier Corporate & Financial District',
+    chip: 'Golf Course Road • Premier Corporate District',
     corridor: 'Golf Course Road Corridor',
-    extraOverlayOpacity: 0.1,
   },
   {
     image: '/images/hero-office-interior.jpg',
     alt: 'Grade A corporate headquarters lobby and executive workspaces in Gurgaon',
-    chip: 'Grade A Headquarters • Sustainable Corporate Infrastructure',
+    chip: 'Grade A Corporate Workspaces • Sustainable Towers',
     corridor: 'Horizon Center Micro-market',
-    extraOverlayOpacity: 0.05,
   },
   {
     image: '/images/category-retail.png',
     alt: 'High-street commercial retail promenade and premium dining destinations',
-    chip: 'Golf Course Extn • High-Street Retail & Anchor Footfalls',
+    chip: 'Golf Course Extn • High-Street Retail & Footfalls',
     corridor: 'Golf Course Extension Corridor',
-    extraOverlayOpacity: 0.1,
   },
   {
     image: '/images/category-sco.png',
     alt: 'Commercial SCO plots and freehold commercial plazas in Gurgaon',
-    chip: 'Southern Peripheral Road (SPR) • Freehold SCO Commercial',
+    chip: 'Southern Peripheral Road • Freehold SCO Plots',
     corridor: 'SPR Corridor',
-    extraOverlayOpacity: 0.05,
   },
   {
     image: '/images/location-corridor.png',
     alt: 'Dwarka Expressway emerging commercial growth and retail hubs',
-    chip: 'Dwarka Expressway • High Growth Commercial & Mixed-Use Hub',
+    chip: 'Dwarka Expressway • Mixed-Use Commercial Hub',
     corridor: 'Dwarka Expressway Hub',
-    extraOverlayOpacity: 0.08,
   },
 ]
 
@@ -134,7 +127,7 @@ export function HeroSlideshow() {
 
   return (
     <div
-      className="absolute inset-0 overflow-hidden"
+      className="relative w-full h-[360px] sm:h-[420px] md:h-[460px] lg:h-[490px] xl:h-[510px] rounded-[24px] overflow-hidden border border-line-200 shadow-[0_10px_30px_rgba(20,33,61,0.08)] bg-blue-50 select-none group"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
@@ -142,9 +135,9 @@ export function HeroSlideshow() {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      aria-label="Gurgaon Commercial Corridors Slideshow"
+      aria-label="Gurgaon Commercial Developments Slideshow"
     >
-      {/* Background Slides with Ken Burns zoom (1 -> 1.06) & Smooth 800ms Crossfade */}
+      {/* Background Slides with Ken Burns zoom (1 -> 1.05) & Smooth 800ms Crossfade */}
       {heroSlides.map((slide, idx) => {
         const isActive = idx === currentSlide
         return (
@@ -158,7 +151,7 @@ export function HeroSlideshow() {
             <div
               className={cn(
                 'relative w-full h-full transition-transform duration-2000 ease-out',
-                isActive && !reducedMotion ? 'scale-106' : 'scale-100'
+                isActive && !reducedMotion ? 'scale-105' : 'scale-100'
               )}
             >
               <Image
@@ -168,41 +161,34 @@ export function HeroSlideshow() {
                 priority={idx === 0}
                 loading={idx === 0 ? 'eager' : 'lazy'}
                 className="object-cover object-center"
-                sizes="100vw"
+                sizes="(max-width: 1024px) 100vw, 52vw"
               />
             </div>
-
-            {/* Configurable extra slide-wise overlay if bright */}
-            {slide.extraOverlayOpacity && (
-              <div
-                className="absolute inset-0 bg-[#111315] pointer-events-none"
-                style={{ opacity: slide.extraOverlayOpacity }}
-              />
-            )}
           </div>
         )
       })}
 
-      {/* Mandatory Dark Scrim: linear-gradient with Obsidian #111315 */}
-      <div
-        className="absolute inset-0 z-20 pointer-events-none"
-        style={{
-          background:
-            'linear-gradient(to bottom, rgba(17,19,21,0.78) 0%, rgba(17,19,21,0.58) 40%, rgba(17,19,21,0.88) 100%)',
-        }}
-      />
+      {/* Top Floating Badge Chip */}
+      <div className="absolute top-4 right-4 z-20 pointer-events-none">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/95 backdrop-blur-md border border-line-200 text-ink-900 text-xs font-semibold shadow-md">
+          <ShieldCheck className="size-3.5 text-blue-600" />
+          <span>Verified Commercial Assets</span>
+        </div>
+      </div>
 
-      {/* Bottom Slideshow Controls with Animated Caption Pill (Never overlaps with H1 on mobile) */}
-      <div className="absolute bottom-6 left-0 right-0 z-30 flex flex-col items-center gap-2.5 px-4 pointer-events-auto">
+      {/* Bottom Controls Bar: Left Caption Pill + Right Dots/Progress */}
+      <div className="absolute bottom-4 left-4 right-4 z-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 pointer-events-auto">
+        {/* Caption Chip with Solid White Background & Ink Text (No text on raw image) */}
         <div
           key={currentSlide}
-          className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary-900/95 border border-white/20 text-white text-xs font-semibold shadow-2xl backdrop-blur-md animate-in fade-in slide-in-from-bottom-1 duration-300 pointer-events-none max-w-full truncate"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-line-200 text-ink-900 text-xs font-semibold shadow-md backdrop-blur-md animate-in fade-in duration-300 max-w-full truncate"
         >
-          <MapPin className="size-3 text-accent-500 shrink-0" />
+          <MapPin className="size-3 text-red-600 shrink-0" />
           <span className="truncate">{heroSlides[currentSlide].chip}</span>
         </div>
 
-        <div className="flex items-center gap-2 bg-primary-900/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 shadow-xl">
+        {/* Progress Dots + Play/Pause */}
+        <div className="flex items-center gap-1.5 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full border border-line-200 shadow-md">
           {heroSlides.map((_, idx) => {
             const isActive = idx === currentSlide
             return (
@@ -212,16 +198,16 @@ export function HeroSlideshow() {
                 onClick={() => setCurrentSlide(idx)}
                 className={cn(
                   'relative h-2 rounded-full transition-all duration-300 overflow-hidden',
-                  isActive ? 'w-8 bg-white/20' : 'w-2 bg-white/40 hover:bg-white/70'
+                  isActive ? 'w-7 bg-blue-100' : 'w-2 bg-line-200 hover:bg-blue-300'
                 )}
                 aria-label={`Jump to slide ${idx + 1}`}
                 aria-current={isActive ? 'true' : 'false'}
               >
                 {isActive && !isPaused && !reducedMotion && (
-                  <span className="absolute inset-0 bg-accent-500 animate-slide-progress rounded-full" />
+                  <span className="absolute inset-0 bg-blue-600 animate-slide-progress rounded-full" />
                 )}
                 {isActive && (isPaused || reducedMotion) && (
-                  <span className="absolute inset-0 bg-accent-500 rounded-full" />
+                  <span className="absolute inset-0 bg-blue-600 rounded-full" />
                 )}
               </button>
             )
@@ -230,11 +216,11 @@ export function HeroSlideshow() {
           <button
             type="button"
             onClick={() => setIsPaused(!isPaused)}
-            className="ml-1.5 p-1 rounded-full text-white/80 hover:text-white transition-colors"
+            className="ml-1 p-0.5 rounded-full text-muted-600 hover:text-ink-900 transition-colors"
             aria-label={isPaused ? 'Resume slideshow' : 'Pause slideshow'}
             title={isPaused ? 'Play' : 'Pause'}
           >
-            {isPaused ? <Play className="size-3 text-white" /> : <Pause className="size-3 text-white" />}
+            {isPaused ? <Play className="size-3 text-blue-600" /> : <Pause className="size-3 text-ink-900" />}
           </button>
         </div>
       </div>

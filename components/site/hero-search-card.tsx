@@ -24,22 +24,22 @@ export function HeroSearchCard() {
   }
 
   return (
-    <div className="w-full max-w-5xl mx-auto mt-10">
+    <div className="w-full max-w-5xl mx-auto">
       <form
         onSubmit={handleSearch}
-        className="glass-panel rounded-2xl p-4 sm:p-6 shadow-2xl text-left border border-white/15"
+        className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 text-left border border-line-200 shadow-[0_12px_36px_rgba(20,33,61,0.08)]"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Property Type */}
           <div>
-            <label className="flex items-center gap-1.5 text-xs font-bold text-accent-500 uppercase tracking-wider mb-2">
-              <Building2 className="size-3.5" />
+            <label className="flex items-center gap-1.5 text-xs font-bold text-blue-600 uppercase tracking-wider mb-2">
+              <Building2 className="size-3.5 text-blue-600" />
               Property Type
             </label>
             <select
               value={propertyType}
               onChange={(e) => setPropertyType(e.target.value)}
-              className="w-full bg-primary-900/90 text-white text-sm rounded-lg px-3.5 py-2.5 border border-white/20 focus:border-accent-500 focus:outline-none focus:ring-1 focus:ring-accent-500 transition-colors"
+              className="w-full bg-white text-ink-900 text-sm rounded-xl px-3.5 py-2.5 border border-line-200 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 transition-colors shadow-sm"
             >
               <option value="all">All Commercial Types</option>
               <option value="office">Grade A Offices</option>
@@ -51,14 +51,14 @@ export function HeroSearchCard() {
 
           {/* Location / Corridor */}
           <div>
-            <label className="flex items-center gap-1.5 text-xs font-bold text-accent-500 uppercase tracking-wider mb-2">
-              <MapPin className="size-3.5" />
+            <label className="flex items-center gap-1.5 text-xs font-bold text-blue-600 uppercase tracking-wider mb-2">
+              <MapPin className="size-3.5 text-blue-600" />
               Gurgaon Corridor
             </label>
             <select
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-              className="w-full bg-primary-900/90 text-white text-sm rounded-lg px-3.5 py-2.5 border border-white/20 focus:border-accent-500 focus:outline-none focus:ring-1 focus:ring-accent-500 transition-colors"
+              className="w-full bg-white text-ink-900 text-sm rounded-xl px-3.5 py-2.5 border border-line-200 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 transition-colors shadow-sm"
             >
               <option value="all">All Corridors</option>
               <option value="golf-course-road">Golf Course Road</option>
@@ -73,14 +73,14 @@ export function HeroSearchCard() {
 
           {/* Budget */}
           <div>
-            <label className="flex items-center gap-1.5 text-xs font-bold text-accent-500 uppercase tracking-wider mb-2">
-              <IndianRupee className="size-3.5" />
+            <label className="flex items-center gap-1.5 text-xs font-bold text-blue-600 uppercase tracking-wider mb-2">
+              <IndianRupee className="size-3.5 text-blue-600" />
               Investment Budget
             </label>
             <select
               value={budget}
               onChange={(e) => setBudget(e.target.value)}
-              className="w-full bg-primary-900/90 text-white text-sm rounded-lg px-3.5 py-2.5 border border-white/20 focus:border-accent-500 focus:outline-none focus:ring-1 focus:ring-accent-500 transition-colors"
+              className="w-full bg-white text-ink-900 text-sm rounded-xl px-3.5 py-2.5 border border-line-200 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 transition-colors shadow-sm"
             >
               <option value="all">Any Budget</option>
               <option value="50l-1cr">₹50 Lakh – ₹1 Cr</option>
@@ -93,14 +93,14 @@ export function HeroSearchCard() {
 
           {/* Possession */}
           <div>
-            <label className="flex items-center gap-1.5 text-xs font-bold text-accent-500 uppercase tracking-wider mb-2">
-              <Clock className="size-3.5" />
+            <label className="flex items-center gap-1.5 text-xs font-bold text-blue-600 uppercase tracking-wider mb-2">
+              <Clock className="size-3.5 text-blue-600" />
               Possession Status
             </label>
             <select
               value={possession}
               onChange={(e) => setPossession(e.target.value)}
-              className="w-full bg-primary-900/90 text-white text-sm rounded-lg px-3.5 py-2.5 border border-white/20 focus:border-accent-500 focus:outline-none focus:ring-1 focus:ring-accent-500 transition-colors"
+              className="w-full bg-white text-ink-900 text-sm rounded-xl px-3.5 py-2.5 border border-line-200 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 transition-colors shadow-sm"
             >
               <option value="all">Any Status</option>
               <option value="ready">Ready to Move / Delivered</option>
@@ -110,13 +110,13 @@ export function HeroSearchCard() {
         </div>
 
         {/* Submit Button */}
-        <div className="mt-4 pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="text-xs text-sand-50/80 font-medium">
+        <div className="mt-5 pt-4 border-t border-line-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="text-xs text-muted-600 font-medium">
             Backed by verified commercial data & location due diligence
           </div>
           <button
             type="submit"
-            className="coral-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold shadow-lg tracking-wide"
+            className="red-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold shadow-md tracking-wide"
           >
             <Search className="size-4" />
             <span>Search Properties</span>

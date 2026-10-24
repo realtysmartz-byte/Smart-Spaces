@@ -52,17 +52,16 @@ export default function ProjectsPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-primary-900 text-white py-16 sm:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(#C27803_1px,transparent_1px)] [background-size:24px_24px] opacity-15" />
+      <section className="bg-white text-ink-900 py-14 sm:py-16 relative overflow-hidden border-b border-line-200">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary-700/90 border border-primary-500/40 text-white text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
-            <span className="size-2 rounded-full bg-accent-500" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 border border-blue-300/40 text-blue-600 text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
+            <span className="size-2 rounded-full bg-red-600" />
             Commercial Asset Discovery
           </div>
-          <h1 className="font-heading text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-white">
+          <h1 className="font-heading text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-ink-900">
             Commercial Projects in Gurgaon
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-sand-100/90 max-w-3xl leading-relaxed font-sans">
+          <p className="mt-4 text-base sm:text-lg text-muted-600 max-w-3xl leading-relaxed font-sans">
             Search verified commercial developments across Gurgaon corridors. Filter by property format, corridor,
             budget, and possession timeline with objective analytical diligence.
           </p>
@@ -73,7 +72,7 @@ export default function ProjectsPage() {
       <Suspense
         fallback={
           <div className="py-24 text-center text-muted-600">
-            <div className="size-8 border-2 border-accent-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+            <div className="size-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
             <p className="text-sm">Loading commercial directory...</p>
           </div>
         }

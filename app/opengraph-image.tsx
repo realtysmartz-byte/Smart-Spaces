@@ -15,7 +15,7 @@ export default async function Image() {
     (
       <div
         style={{
-          background: '#0e3b36',
+          background: 'linear-gradient(135deg, #1E4FA8 0%, #102C63 100%)',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -27,20 +27,41 @@ export default async function Image() {
       >
         <div
           style={{
-            fontSize: 72,
-            fontWeight: 700,
-            color: '#f7f5f0',
-            letterSpacing: '-0.02em',
+            display: 'flex',
+            alignItems: 'center',
             marginBottom: 20,
           }}
         >
-          {siteConfig.name}
+          <span
+            style={{
+              fontSize: 72,
+              fontWeight: 900,
+              color: '#FFFFFF',
+              letterSpacing: '-0.02em',
+              marginRight: 12,
+            }}
+          >
+            SMARTZ
+          </span>
+          <span
+            style={{
+              fontSize: 72,
+              fontWeight: 900,
+              color: '#EF4444',
+              letterSpacing: '-0.02em',
+            }}
+          >
+            SPACES
+          </span>
         </div>
         <div
           style={{
-            fontSize: 32,
-            color: '#c08a3e',
-            marginBottom: 40,
+            fontSize: 26,
+            fontWeight: 700,
+            color: '#93C5FD',
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            marginBottom: 32,
           }}
         >
           {siteConfig.tagline}
@@ -48,13 +69,13 @@ export default async function Image() {
         <div
           style={{
             fontSize: 24,
-            color: '#e6efe9',
+            color: '#E2E8F0',
             textAlign: 'center',
-            maxWidth: 800,
+            maxWidth: 880,
             lineHeight: 1.5,
           }}
         >
-          Commercial Real Estate Advisory for Gurgaon & Delhi NCR
+          Commercial Real Estate Intelligence • Grade A Offices, Retail, SCO & Pre-Leased Assets in Gurgaon & Delhi NCR
         </div>
       </div>
     ),

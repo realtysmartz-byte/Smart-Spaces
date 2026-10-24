@@ -51,17 +51,16 @@ export default function ComparePage() {
       </div>
 
       {/* Hero */}
-      <section className="bg-primary-900 text-white py-16 sm:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(#C27803_1px,transparent_1px)] [background-size:24px_24px] opacity-15" />
+      <section className="bg-white text-ink-900 py-14 sm:py-16 relative overflow-hidden border-b border-line-200">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary-700/90 border border-primary-500/40 text-white text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
-            <span className="size-2 rounded-full bg-accent-500" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 border border-blue-300/40 text-blue-600 text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
+            <span className="size-2 rounded-full bg-red-600" />
             Commercial Intelligence Tool
           </div>
-          <h1 className="font-heading text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-white">
+          <h1 className="font-heading text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-ink-900">
             Compare Commercial Projects
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-sand-100/90 max-w-3xl leading-relaxed font-sans">
+          <p className="mt-4 text-base sm:text-lg text-muted-600 max-w-3xl leading-relaxed font-sans">
             Side-by-side commercial asset evaluation across Gurgaon. Compare corridor advantages, pricing status,
             possession timelines, rental yield potential, and critical risk factors.
           </p>
