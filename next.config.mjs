@@ -27,6 +27,9 @@ const securityHeaders = [
 const nextConfig = {
   trailingSlash: false,
   poweredByHeader: false,
+  experimental: {
+    agentUpgrade: 'security',
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
   },
