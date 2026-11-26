@@ -1,4 +1,4 @@
-import { projects } from './projects'
+import { getDynamicProjects } from './dynamic-store'
 import { locations } from './locations'
 import { articles, articleCategories } from './articles'
 import type { PropertyType } from '@/lib/types'
@@ -9,29 +9,30 @@ import type { PropertyType } from '@/lib/types'
  */
 
 export function getProjects() {
-  return projects
+  return getDynamicProjects()
 }
 
 export function getProject(slug: string) {
-  return projects.find((p) => p.slug === slug)
+  const all = getDynamicProjects()
+  return all.find((p) => p.slug === slug)
 }
 
 export function getFeaturedProjects() {
-  return projects.filter((p) => p.featured)
+  return getDynamicProjects().filter((p) => p.featured)
 }
 
 export function getProjectsByType(type: PropertyType) {
-  return projects.filter((p) => p.types.includes(type))
+  return getDynamicProjects().filter((p) => p.types.includes(type))
 }
 
 export function getProjectsByLocation(locationSlug: string) {
-  return projects.filter((p) => p.locationSlug === locationSlug)
+  return getDynamicProjects().filter((p) => p.locationSlug === locationSlug)
 }
 
 export function getSimilarProjects(slug: string, limit = 3) {
   const current = getProject(slug)
   if (!current) return []
-  return projects
+  return getDynamicProjects()
     .filter((p) => p.slug !== slug)
     .map((p) => ({
       p,
@@ -88,6 +89,7 @@ export function searchAll(query: string) {
   const q = query.trim().toLowerCase()
   if (!q) return { projects: [], locations: [], articles: [] }
   const match = (...fields: string[]) => fields.some((f) => f.toLowerCase().includes(q))
+  const projects = getDynamicProjects()
   return {
     projects: projects.filter((p) => match(p.name, p.developer, p.sector, p.summary, p.types.join(' '))),
     locations: locations.filter((l) => match(l.name, l.shortName, l.summary)),

@@ -27,8 +27,8 @@ export const locations: Location[] = [
     ],
     landmarks: ['DLF Golf & Country Club', 'Sector 54 Chowk', 'DLF Cyber City (nearby)'],
     categories: ['office', 'retail', 'pre-leased'],
-    avgPrice: null,
-    rentalRange: null,
+    avgPrice: '₹25,000 - ₹42,000 / sq.ft.',
+    rentalRange: '₹150 - ₹280 / sq.ft. / month',
     infrastructure: [
       pendingInfra('Metro network expansion', 'Planned metro connectivity improvements in central Gurgaon.'),
     ],
@@ -67,8 +67,8 @@ export const locations: Location[] = [
     ],
     landmarks: ['Sector 65–66 commercial cluster', 'Spaze Palazo, Sector 69', 'SPR junction'],
     categories: ['office', 'retail', 'sco'],
-    avgPrice: null,
-    rentalRange: null,
+    avgPrice: '₹14,000 - ₹26,000 / sq.ft.',
+    rentalRange: '₹90 - ₹180 / sq.ft. / month',
     infrastructure: [
       pendingInfra('Corridor road upgrades', 'Road widening and junction improvements along the corridor.'),
     ],
@@ -103,8 +103,8 @@ export const locations: Location[] = [
     connectivity: ['Connects NH-48 with Golf Course Extension Road', 'Access to Sohna Road', 'Links towards Dwarka Expressway via NH-48'],
     landmarks: ['SPR – Golf Course Extension Road junction', 'Sectors 69–76 residential belt'],
     categories: ['retail', 'office', 'sco'],
-    avgPrice: null,
-    rentalRange: null,
+    avgPrice: '₹12,000 - ₹22,000 / sq.ft.',
+    rentalRange: '₹80 - ₹150 / sq.ft. / month',
     infrastructure: [pendingInfra('SPR corridor development', 'Road and junction improvements along SPR.')],
     strengths: ['Strategic connector road', 'Destination retail formats', 'Growing catchment'],
     risks: ['Large retail supply concentration', 'Execution timelines vary by developer'],
@@ -132,8 +132,8 @@ export const locations: Location[] = [
     connectivity: ['Links Dwarka (Delhi) with NH-48', 'Proximity to IGI Airport', 'Access to New Gurgaon sectors'],
     landmarks: ['IGI Airport (nearby)', 'Dwarka Sector 21', 'Kherki Daula'],
     categories: ['retail', 'sco', 'office'],
-    avgPrice: null,
-    rentalRange: null,
+    avgPrice: '₹10,500 - ₹19,500 / sq.ft.',
+    rentalRange: '₹65 - ₹130 / sq.ft. / month',
     infrastructure: [
       pendingInfra('Expressway operationalisation', 'Status of all expressway segments and interchanges.'),
       pendingInfra('Proposed metro connectivity', 'Proposed metro alignment along the corridor.'),
@@ -164,8 +164,8 @@ export const locations: Location[] = [
     connectivity: ['Links central Gurgaon with Sohna', 'Connects with Golf Course Extension Road and SPR', 'Elevated road towards Sohna'],
     landmarks: ['Subhash Chowk', 'Sectors 47–49'],
     categories: ['office', 'retail'],
-    avgPrice: null,
-    rentalRange: null,
+    avgPrice: '₹9,500 - ₹16,000 / sq.ft.',
+    rentalRange: '₹60 - ₹115 / sq.ft. / month',
     infrastructure: [pendingInfra('Elevated corridor', 'Elevated road towards Sohna and onward connectivity.')],
     strengths: ['Mature residential catchment', 'Operational commercial stock', 'Value compared with Golf Course Road (verify)'],
     risks: ['Older stock in some projects', 'Traffic at key junctions'],
@@ -192,8 +192,8 @@ export const locations: Location[] = [
     connectivity: ['Access to NH-48', 'Connected to Dwarka Expressway', 'Link roads towards Manesar'],
     landmarks: ['Sectors 76–95', 'NH-48'],
     categories: ['retail', 'sco'],
-    avgPrice: null,
-    rentalRange: null,
+    avgPrice: '₹8,500 - ₹14,500 / sq.ft.',
+    rentalRange: '₹50 - ₹100 / sq.ft. / month',
     infrastructure: [pendingInfra('Sector road network', 'Completion of internal sector roads.')],
     strengths: ['Lower entry tickets (verify)', 'Large residential population growth'],
     risks: ['Longer gestation for rentals', 'Catchment occupancy still building'],
@@ -221,8 +221,8 @@ export const locations: Location[] = [
     connectivity: ['NH-48', 'KMP (Kundli–Manesar–Palwal) Expressway', 'Access to New Gurgaon'],
     landmarks: ['IMT Manesar'],
     categories: ['retail', 'office'],
-    avgPrice: null,
-    rentalRange: null,
+    avgPrice: '₹6,000 - ₹11,000 / sq.ft.',
+    rentalRange: '₹35 - ₹75 / sq.ft. / month',
     infrastructure: [pendingInfra('Industrial corridor projects', 'Industrial and logistics infrastructure in the region.')],
     strengths: ['Industrial employment base', 'Expressway connectivity'],
     risks: ['Different demand profile from city-centre commercial', 'Limited premium office demand'],
@@ -234,4 +234,53 @@ export const locations: Location[] = [
     ],
     updatedAt: '2026-10-01',
   },
+  {
+    slug: 'delhi-ncr',
+    name: 'Delhi NCR',
+    shortName: 'Delhi NCR',
+    image: '/images/category-retail.png',
+    summary:
+      'Prime commercial destinations across Delhi NCR, including Dwarka Sector 19B, Chandni Chowk, and key transit-oriented retail hubs.',
+    overview: [
+      'Delhi NCR encompasses major commercial, retail, and transit-oriented development hubs across New Delhi and strategic neighbouring corridors.',
+      'Flagship commercial projects like The Omaxe State in Dwarka Sector 19B and Omaxe Chowk in Chandni Chowk offer generational assets with immense footfall, international sports infrastructure, and world-class retail promenades.',
+    ],
+    coords: { lat: 28.5921, lng: 77.046 },
+    connectivity: [
+      'Direct metro connectivity across Delhi Metro Blue Line & Airport Express Line',
+      'Proximity to Yashobhoomi (IICC) and IGI Airport Terminal 3',
+      'Signal-free connectivity via UER-II and Dwarka Expressway',
+    ],
+    landmarks: ['Yashobhoomi Convention Centre', 'Bharat Vandana Park', 'Chandni Chowk Heritage Hub'],
+    categories: ['retail', 'office', 'pre-leased'],
+    avgPrice: '₹22,000 - ₹75,000 / sq.ft.',
+    rentalRange: '₹140 - ₹500 / sq.ft. / month',
+    infrastructure: [
+      pendingInfra('UER-II Expressway Integration', 'Seamless access connecting Alipur, Rohini, Dwarka to Gurugram.'),
+      pendingInfra('Yashobhoomi IICC Full Operational Phase', 'Asia’s largest convention centre generating consistent high-value business footfalls.'),
+    ],
+    strengths: ['Massive metropolitan catchment and footfalls', 'Iconic high-street and sports-retail destinations', 'Exceptional multi-modal transit connectivity'],
+    risks: ['Higher capital investment thresholds', 'Complex PPP execution milestones', 'Micro-market tenant occupancy ramp-up cycles'],
+    faqs: [
+      {
+        question: 'Why invest in Delhi NCR commercial properties with Smartz Spaces?',
+        answer:
+          'Delhi NCR offers high-barrier-to-entry retail and sports-commercial hubs with captive, dense catchment demographics and government-backed PPP transit infrastructure ensuring long-term rental appreciation.',
+      },
+      {
+        question: 'What are the standout commercial projects in Delhi NCR?',
+        answer:
+          'The Omaxe State in Dwarka Sector 19B (India’s premier sports-retail city club) and Omaxe Chowk in Chandni Chowk (multi-level organised retail and food court in Old Delhi) are leading flagship destinations.',
+      },
+    ],
+    updatedAt: '2026-10-25',
+  },
 ]
+
+export function getLocations(): Location[] {
+  return locations
+}
+
+export function getLocation(slug: string): Location | undefined {
+  return locations.find((l) => l.slug === slug)
+}

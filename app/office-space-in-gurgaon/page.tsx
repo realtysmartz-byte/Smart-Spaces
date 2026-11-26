@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { MapPin, ArrowRight, Building2 } from 'lucide-react'
+import { MapPin, ArrowRight } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
 import { getProjectsByType } from '@/lib/data'
 import { buttonVariants } from '@/components/ui/button'
@@ -9,6 +9,7 @@ import { JsonLd } from '@/components/seo/json-ld'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Breadcrumbs } from '@/components/site/breadcrumbs'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { OfficeOptionsSection } from '@/components/site/office-options-section'
 
 export const metadata = {
   title: 'Office Space in Gurgaon | Smartz Spaces',
@@ -84,26 +85,8 @@ export default function OfficeSpacePage() {
         </div>
       </section>
 
-      {/* Options */}
-      <section className="py-12 bg-muted/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl mb-8">Office Space Options</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { title: 'Grade A Offices', desc: 'Premium towers with modern specifications, central AC and amenities', icon: Building2 },
-              { title: 'Managed Offices', desc: 'Plug-and-play spaces with furniture and maintenance included', icon: Building2 },
-              { title: 'Boutique Offices', desc: 'Smaller, characterful spaces for teams wanting a unique identity', icon: Building2 },
-              { title: 'Office Investments', desc: 'Strata-sale units for rental income and capital appreciation', icon: Building2 },
-            ].map((option, idx) => (
-              <div key={idx} className="rounded-lg border border-border bg-card p-6">
-                <option.icon className="size-8 text-primary mb-4" />
-                <h3 className="font-semibold">{option.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{option.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Office Space Options - Wave Cards Showcase */}
+      <OfficeOptionsSection />
 
       {/* Buy vs Lease Comparison */}
       <section className="py-12 sm:py-20">

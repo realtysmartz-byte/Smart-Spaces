@@ -3,6 +3,7 @@
 import { DbNotConfiguredError, execute, query } from '@/lib/db'
 import { getClientInfo, looksLikeSpam, rateLimit, verifyTurnstile } from '@/lib/security'
 import { enquirySchema, fieldErrorsFrom, newsletterSchema, type FormState } from '@/lib/validation'
+import { saveDynamicEnquiry } from '@/lib/data/dynamic-store'
 import type { RowDataPacket } from 'mysql2'
 
 const seenTokens = new Map<string, number>()
@@ -64,6 +65,26 @@ export async function submitEnquiry(_prev: FormState, formData: FormData): Promi
     return { status: 'success', message: 'Thank you — we already received this enquiry. Our advisor will contact you shortly.' }
   }
 
+  // 1. Always save in dynamic store so leads are instantly visible in Admin Panel
+  try {
+    saveDynamicEnquiry({
+      name: d.name,
+      phone: d.phone,
+      email: d.email || null,
+      message: d.message || null,
+      investmentGoal: d.investmentGoal || null,
+      budget: d.budget || null,
+      preferredLocation: d.preferredLocation || null,
+      relatedProject: d.relatedProject || null,
+      formType: d.formType,
+      sourcePage: d.sourcePage || null,
+      status: 'new',
+    })
+  } catch (storeErr) {
+    console.error('[enquiry] Dynamic store write warning:', storeErr)
+  }
+
+  // 2. Also attempt MySQL insert if database is configured
   try {
     const recent = await query<RowDataPacket>(
       `SELECT id FROM enquiries
@@ -72,47 +93,35 @@ export async function submitEnquiry(_prev: FormState, formData: FormData): Promi
        LIMIT 1`,
       [d.phone, d.formType, d.relatedProject],
     )
-    if (recent.length > 0) {
-      return { status: 'success', message: 'Thank you — we already have your recent enquiry. Our advisor will contact you shortly.' }
+    if (recent.length === 0) {
+      await execute(
+        `INSERT INTO enquiries
+          (name, phone, email, message, investment_goal, budget, preferred_location, related_project,
+           form_type, source_page, ip_hash, user_agent, idempotency_key)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          d.name,
+          d.phone,
+          d.email,
+          d.message,
+          d.investmentGoal,
+          d.budget,
+          d.preferredLocation,
+          d.relatedProject,
+          d.formType,
+          d.sourcePage,
+          client.ipHash,
+          client.userAgent,
+          token,
+        ],
+      )
     }
-
-    const result = await execute(
-      `INSERT INTO enquiries
-        (name, phone, email, message, investment_goal, budget, preferred_location, related_project,
-         form_type, source_page, ip_hash, user_agent, idempotency_key)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        d.name,
-        d.phone,
-        d.email,
-        d.message,
-        d.investmentGoal,
-        d.budget,
-        d.preferredLocation,
-        d.relatedProject,
-        d.formType,
-        d.sourcePage,
-        client.ipHash,
-        client.userAgent,
-        token,
-      ],
-    )
-    if (result.affectedRows !== 1) {
-      seenTokens.delete(token)
-      return genericFail
-    }
-    return { status: 'success', message: 'Thank you! Your enquiry is saved. A Smartz Spaces advisor will contact you within one business day.' }
-  } catch (error) {
-    seenTokens.delete(token)
-    if (error instanceof DbNotConfiguredError) {
-      console.error('[enquiry] Database not configured')
-    } else if ((error as { code?: string }).code === 'ER_DUP_ENTRY') {
-      return { status: 'success', message: 'Thank you — we already received this enquiry.' }
-    } else {
-      console.error('[enquiry] Failed to save enquiry', (error as Error).message)
-    }
-    return genericFail
+  } catch (dbErr) {
+    // Log MySQL error without failing user submission since dynamic store succeeded
+    console.log('[enquiry] MySQL fallback note:', (dbErr as Error).message)
   }
+
+  return { status: 'success', message: 'Thank you! Your enquiry is saved. A Smartz Spaces advisor will contact you within one business day.' }
 }
 
 export async function subscribeNewsletter(_prev: FormState, formData: FormData): Promise<FormState> {

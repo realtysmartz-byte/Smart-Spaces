@@ -95,3 +95,33 @@ export type Article = {
   relatedProjects?: string[]
   relatedLocations?: string[]
 }
+
+export type EnquiryStatus = 'new' | 'contacted' | 'qualified' | 'site-visit' | 'closed' | 'not-interested'
+
+export type Enquiry = {
+  id: number | string
+  name: string
+  phone: string
+  email?: string | null
+  message?: string | null
+  investmentGoal?: string | null
+  budget?: string | null
+  preferredLocation?: string | null
+  relatedProject?: string | null
+  formType: string
+  sourcePage?: string | null
+  status: EnquiryStatus
+  notes?: string | null
+  createdAt: string
+  updatedAt?: string | null
+}
+
+export type SiteSettings = {
+  phone: string
+  phoneSecondary?: string
+  whatsapp: string
+  email: string
+  address: string
+  reraNumber: string
+  heroTagline: string
+}

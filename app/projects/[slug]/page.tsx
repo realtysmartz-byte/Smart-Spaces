@@ -14,7 +14,7 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 
 interface ProjectPageProps {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
@@ -26,7 +26,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const project = getProject(params.slug)
+  const { slug } = await params
+  const project = getProject(slug)
   if (!project) return { title: 'Project Not Found' }
 
   const canonicalUrl = `${siteConfig.url}/projects/${project.slug}`
@@ -58,11 +59,12 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   }
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const project = getProject(params.slug)
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { slug } = await params
+  const project = getProject(slug)
   if (!project) notFound()
 
-  const similarProjects = getSimilarProjects(params.slug)
+  const similarProjects = getSimilarProjects(slug)
   const location = getLocation(project.locationSlug)
 
   const pageSchema = {

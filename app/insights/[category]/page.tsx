@@ -11,7 +11,7 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 
 interface CategoryPageProps {
-  params: { category: string }
+  params: Promise<{ category: string }>
 }
 
 export async function generateStaticParams() {
@@ -22,7 +22,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-  const category = getArticleCategory(params.category)
+  const { category: catSlug } = await params
+  const category = getArticleCategory(catSlug)
   if (!category) return { title: 'Category Not Found' }
 
   return {
@@ -31,11 +32,12 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   }
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  const category = getArticleCategory(params.category)
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { category: catSlug } = await params
+  const category = getArticleCategory(catSlug)
   if (!category) notFound()
 
-  const articles = getArticlesByCategory(params.category)
+  const articles = getArticlesByCategory(catSlug)
   const allCategories = getArticleCategories()
 
   const pageSchema = {

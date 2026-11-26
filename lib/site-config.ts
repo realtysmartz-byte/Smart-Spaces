@@ -8,11 +8,10 @@ export const siteConfig = {
   serviceArea: ['Gurgaon', 'Gurugram', 'Delhi NCR'],
   contact: {
     phones: [
-      { display: '+91 9650 550 411', tel: '+919650550411' },
-      { display: '+91 8010 841 841', tel: '+918010841841' },
+      { display: '+91 8144 081 081', tel: '+918144081081' },
     ],
     email: 'info@smartzspaces.in',
-    whatsapp: '919650550411',
+    whatsapp: '918144081081',
     whatsappMessage:
       'Hi Smartz Spaces, I am interested in commercial property in Gurgaon. Please share options.',
     address: {

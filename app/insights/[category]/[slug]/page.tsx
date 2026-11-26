@@ -11,7 +11,7 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 
 interface ArticlePageProps {
-  params: { category: string; slug: string }
+  params: Promise<{ category: string; slug: string }>
 }
 
 export async function generateStaticParams() {
@@ -24,7 +24,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
-  const article = getArticle(params.category, params.slug)
+  const { category, slug } = await params
+  const article = getArticle(category, slug)
   if (!article) return { title: 'Article Not Found' }
 
   const canonicalUrl = `${siteConfig.url}/insights/${article.category}/${article.slug}`
@@ -60,12 +61,13 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   }
 }
 
-export default function ArticlePage({ params }: ArticlePageProps) {
-  const article = getArticle(params.category, params.slug)
+export default async function ArticlePage({ params }: ArticlePageProps) {
+  const { category, slug } = await params
+  const article = getArticle(category, slug)
   if (!article) notFound()
 
-  const relatedArticles = getRelatedArticles(params.slug)
-  const category = getArticleCategory(params.category)
+  const relatedArticles = getRelatedArticles(slug)
+  const categoryData = getArticleCategory(category)
 
   const pageSchema = {
     '@context': 'https://schema.org',
@@ -93,8 +95,8 @@ export default function ArticlePage({ params }: ArticlePageProps) {
           items={[
             { label: 'Home', href: '/' },
             { label: 'Insights', href: '/insights' },
-            { label: category?.name || params.category, href: `/insights/${params.category}` },
-            { label: article.title, href: `/insights/${params.category}/${params.slug}` },
+            { label: categoryData?.name || category, href: `/insights/${category}` },
+            { label: article.title, href: `/insights/${category}/${slug}` },
           ]}
         />
       </div>
@@ -103,7 +105,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
       <section className="py-12 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <Badge variant="secondary" className="mb-4">
-            {category?.name || params.category}
+            {categoryData?.name || category}
           </Badge>
           <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
             {article.title}

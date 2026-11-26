@@ -9,6 +9,7 @@ import { SCOCalculator } from '@/components/calculators/sco-calculator'
 import { JsonLd } from '@/components/seo/json-ld'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Breadcrumbs } from '@/components/site/breadcrumbs'
+import { SCOOwnershipSection } from '@/components/site/sco-ownership-section'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -82,28 +83,8 @@ export default function SCOPlotsPage() {
         </div>
       </section>
 
-      {/* What is SCO */}
-      <section className="py-12 bg-muted/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl mb-8">Understanding SCO Ownership</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { title: 'Plot Ownership', desc: 'You own the commercial plot and the land title' },
-              { title: 'Building Control', desc: 'Design and construct the building within bye-laws' },
-              { title: 'Leasing Freedom', desc: 'Decide tenants, rents and lease terms for each floor' },
-              { title: 'Customization', desc: 'Branding, facade and interior design are your choice' },
-              { title: 'Maintenance', desc: 'You bear building maintenance and common area costs' },
-              { title: 'Exit Flexibility', desc: 'Sell the whole building or lease floor-wise' },
-            ].map((item, idx) => (
-              <div key={idx} className="rounded-lg border border-border bg-card p-6">
-                <Building2 className="size-6 text-primary mb-3" />
-                <h3 className="font-semibold">{item.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Understanding SCO Ownership Guide */}
+      <SCOOwnershipSection />
 
       {/* SCO Calculator */}
       <section className="py-12 sm:py-20">

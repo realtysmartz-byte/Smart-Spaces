@@ -46,7 +46,7 @@ export function StampDutyCalculator() {
       </div>
       <div className="rounded-lg border border-border bg-primary text-primary-foreground p-6">
         <Calculator className="size-8 mb-4" />
-        <h3 className="text-xl font-semibold mb-4">Calculation Results</h3>
+        <h3 className="text-xl font-semibold text-white mb-4">Calculation Results</h3>
         <div className="space-y-4">
           <div>
             <div className="text-sm opacity-80">Stamp Duty ({rate}%)</div>

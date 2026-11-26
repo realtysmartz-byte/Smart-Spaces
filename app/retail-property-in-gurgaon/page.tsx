@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { MapPin, ArrowRight, Store } from 'lucide-react'
+import { MapPin, ArrowRight } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
 import { getProjectsByType, getArticles } from '@/lib/data'
 import { buttonVariants } from '@/components/ui/button'
@@ -8,6 +8,7 @@ import { EnquiryForm } from '@/components/forms/enquiry-form'
 import { JsonLd } from '@/components/seo/json-ld'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Breadcrumbs } from '@/components/site/breadcrumbs'
+import { RetailOptionsSection } from '@/components/site/retail-options-section'
 
 export const metadata = {
   title: 'Retail Property in Gurgaon | Smartz Spaces',
@@ -17,17 +18,6 @@ export const metadata = {
 
 const retailProjects = getProjectsByType('retail')
 const retailArticles = getArticles().filter((a) => a.category === 'commercial-trends' || a.category === 'real-estate-myths').slice(0, 3)
-
-const evaluationFactors = [
-  { title: 'Footfall', desc: 'Daily and weekend footfall from nearby residential and office catchments' },
-  { title: 'Catchment Area', desc: 'Residential density, income profile and future growth in the surrounding area' },
-  { title: 'Visibility', desc: 'Frontage width, elevation visibility from main road and signage opportunities' },
-  { title: 'Anchor Brands', desc: 'Presence of anchor tenants that drive footfall to the project' },
-  { title: 'Competition', desc: 'Competing retail supply in the micro-market and its impact on rents' },
-  { title: 'Rental Potential', desc: 'Comparable rents in operational projects nearby and realistic occupancy timelines' },
-  { title: 'Future Supply', desc: 'Upcoming retail launches that may affect vacancy and rents' },
-  { title: 'Exit Potential', desc: 'Secondary market demand, buyer profile and resale activity' },
-]
 
 const faqs = [
   {
@@ -87,21 +77,8 @@ export default function RetailPropertyPage() {
         </div>
       </section>
 
-      {/* Evaluation Factors */}
-      <section className="py-12 bg-muted/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl mb-8">Retail Evaluation Factors</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {evaluationFactors.map((factor, idx) => (
-              <div key={idx} className="rounded-lg border border-border bg-card p-6">
-                <Store className="size-6 text-primary mb-3" />
-                <h3 className="font-semibold">{factor.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{factor.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Retail Space Formats - Wave Cards Showcase */}
+      <RetailOptionsSection />
 
       {/* Featured Retail Projects */}
       <section className="py-12 sm:py-20">

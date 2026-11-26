@@ -4,7 +4,9 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Search, X, Building2, MapPin, Calculator, BookOpen, ArrowRight } from 'lucide-react'
-import { getProjects, getLocations, getArticles } from '@/lib/data'
+import { projects as staticProjects } from '@/lib/data/projects'
+import { locations as allLocations } from '@/lib/data/locations'
+import { articles as allArticles } from '@/lib/data/articles'
 
 interface SearchDialogProps {
   open: boolean
@@ -47,11 +49,11 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
 
   const q = query.toLowerCase().trim()
 
-  const projects = getProjects()
+  const projects = staticProjects
     .filter((p) => !q || p.name.toLowerCase().includes(q) || p.sector.toLowerCase().includes(q) || p.developer.toLowerCase().includes(q))
     .slice(0, 4)
 
-  const locations = getLocations()
+  const locations = allLocations
     .filter((l) => !q || l.name.toLowerCase().includes(q) || l.shortName.toLowerCase().includes(q))
     .slice(0, 4)
 
@@ -64,7 +66,7 @@ export function SearchDialog({ open, onClose }: SearchDialogProps) {
     { name: 'Stamp Duty Calculator', href: '/tools/stamp-duty-calculator', desc: 'Haryana & Delhi duty estimates' },
   ].filter((t) => !q || t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q)).slice(0, 3)
 
-  const articles = getArticles()
+  const articles = allArticles
     .filter((a) => !q || a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q))
     .slice(0, 3)
 

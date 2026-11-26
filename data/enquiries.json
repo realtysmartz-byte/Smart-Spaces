@@ -1,0 +1,63 @@
+[
+  {
+    "id": 101,
+    "name": "Rajesh Malhotra",
+    "phone": "9811234567",
+    "email": "rajesh.malhotra@corpindia.com",
+    "formType": "project-enquiry",
+    "relatedProject": "the-omaxe-state",
+    "budget": "1-2cr",
+    "preferredLocation": "delhi-ncr",
+    "investmentGoal": "capital-appreciation",
+    "message": "Interested in retail shop investment at The Omaxe State Dwarka. Please share payment plans.",
+    "status": "contacted",
+    "notes": "Verified via test script.",
+    "createdAt": "2026-10-28T04:38:26.049Z",
+    "updatedAt": "2026-10-28T09:49:17.948Z"
+  },
+  {
+    "id": 102,
+    "name": "Amitabh Sharma",
+    "phone": "9871098765",
+    "email": "amitabh.s@venturecap.in",
+    "formType": "investment-strategy",
+    "relatedProject": "m3m-ifc",
+    "budget": "2-5cr",
+    "preferredLocation": "golf-course-extension-road",
+    "investmentGoal": "rental-income",
+    "message": "Looking for Grade A pre-leased corporate office space with >7.5% net yield.",
+    "status": "contacted",
+    "notes": "Follow up on Friday 3 PM with presentation on M3M IFC.",
+    "createdAt": "2026-10-27T12:38:26.049Z"
+  },
+  {
+    "id": 103,
+    "name": "Vikram Sethi",
+    "phone": "9910022334",
+    "email": "vikram.sethi@gmail.com",
+    "formType": "shortlist",
+    "relatedProject": "emaar-business-district-83",
+    "budget": "3-5cr",
+    "preferredLocation": "new-gurgaon",
+    "investmentGoal": "self-use",
+    "message": "Need 120-150 sq.yd. SCO plot for corporate clinic headquarter.",
+    "status": "qualified",
+    "notes": "Customer visited site once; comparing EBD 83 with Whiteland 71.",
+    "createdAt": "2026-10-26T18:38:26.049Z"
+  },
+  {
+    "id": 104,
+    "name": "Pooja Aggarwal",
+    "phone": "9818811223",
+    "email": "pooja.a@retailholdings.com",
+    "formType": "project-enquiry",
+    "relatedProject": "omaxe-chowk",
+    "budget": "2-5cr",
+    "preferredLocation": "delhi-ncr",
+    "investmentGoal": "rental-income",
+    "message": "Looking for high footfall food court unit or ground floor jewellery shop.",
+    "status": "site-visit",
+    "notes": "Site visit confirmed for Saturday 11:30 AM at Chandni Chowk.",
+    "createdAt": "2026-10-26T06:38:26.049Z"
+  }
+]

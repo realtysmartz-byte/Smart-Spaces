@@ -1,16 +1,29 @@
 import Link from 'next/link'
-import { Building2, Target, Users, CheckCircle2, ArrowRight } from 'lucide-react'
+import {
+  Building2,
+  Target,
+  Users,
+  CheckCircle2,
+  ArrowRight,
+  ShieldCheck,
+  TrendingUp,
+  Landmark,
+  Scale,
+  Sparkles,
+  Zap,
+} from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
-import { decisionFactors, services, processSteps, companyStats } from '@/lib/data/content'
+import { decisionFactors, services, processSteps } from '@/lib/data/content'
 import { buttonVariants } from '@/components/ui/button'
 import { EnquiryForm } from '@/components/forms/enquiry-form'
 import { JsonLd } from '@/components/seo/json-ld'
 import { Breadcrumbs } from '@/components/site/breadcrumbs'
 
 export const metadata = {
-  title: 'About Smartz Spaces | Commercial Real Estate Advisory',
+  title: 'About Smartz Spaces | Commercial Real Estate Advisory Gurgaon',
   description:
-    'Smartz Spaces is a commercial real estate advisory powered by Realty Smartz Private Limited. Research-led advisory for office, retail, SCO and pre-leased properties in Gurgaon and Delhi NCR.',
+    'Smartz Spaces is a premier research-led commercial real estate advisory powered by Realty Smartz Private Limited. Independent advisory for office, retail, and SCO plots across Gurgaon & Delhi NCR.',
+  alternates: { canonical: '/about' },
 }
 
 const pageSchema = {
@@ -28,9 +41,11 @@ const pageSchema = {
 
 export default function AboutPage() {
   return (
-    <>
+    <div className="bg-[#F4F7FD] min-h-screen text-[#172544]">
       <JsonLd data={pageSchema} />
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+
+      {/* Breadcrumbs */}
+      <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
         <Breadcrumbs
           items={[
             { label: 'Home', href: '/' },
@@ -39,201 +54,244 @@ export default function AboutPage() {
         />
       </div>
 
-      {/* Hero */}
-      <section className="py-12 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-            About Smartz Spaces
-          </h1>
-          <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
-            Smartz Spaces is a commercial real estate advisory powered by Realty Smartz Private Limited. We help
-            investors, business owners and tenants make informed decisions about office, retail, SCO and pre-leased
-            properties in Gurgaon and Delhi NCR.
-          </p>
+      {/* Hero Section */}
+      <section className="relative pt-8 pb-12 sm:pt-14 sm:pb-16 overflow-hidden">
+        <div className="pointer-events-none absolute -top-20 -left-20 size-96 rounded-full bg-blue-100/50 blur-3xl" />
+        <div className="pointer-events-none absolute top-10 right-0 size-96 rounded-full bg-indigo-100/40 blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/80 border border-blue-200 text-[#1557C0] text-xs font-bold uppercase tracking-wider mb-4 shadow-2xs">
+              <span className="size-2 rounded-full bg-[#FF302B] animate-pulse" />
+              Independent Real Estate Advisory
+            </div>
+
+            <div className="h-1.5 w-14 rounded-full bg-gradient-to-r from-[#FF302B] via-[#7C3AED] to-[#1557C0] mb-3.5 shadow-sm" />
+
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#172544] leading-tight">
+              About <span className="text-[#1557C0]">Smartz Spaces</span>
+            </h1>
+
+            <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+              Smartz Spaces is a specialized commercial real estate advisory powered by Realty Smartz Private Limited. We assist institutional investors, business enterprises, and private wealth clients in evaluating Grade A offices, high-street retail, and SCO plots across Gurgaon and Delhi NCR with data-backed rigor.
+            </p>
+
+            <div className="mt-6 flex flex-wrap items-center gap-2.5 sm:gap-4 text-xs sm:text-sm font-medium text-slate-600">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 border border-slate-200/80 shadow-2xs">
+                <CheckCircle2 className="size-4 text-emerald-600" />
+                Data-Led Due Diligence
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 border border-slate-200/80 shadow-2xs">
+                <ShieldCheck className="size-4 text-blue-600" />
+                RERA Compliance Verification
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 border border-slate-200/80 shadow-2xs">
+                <Zap className="size-4 text-amber-500" />
+                Direct Developer Mandates
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* What We Do */}
-      <section className="py-12 bg-muted/50">
+      {/* Advisory Principles: Dual Feature Cards */}
+      <section className="py-8 sm:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2">
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl mb-6">Advisory, Not Just a Portal</h2>
-              <p className="text-muted-foreground mb-4">
-                Unlike property portals that list thousands of options without context, Smartz Spaces focuses on
-                research, analysis and advisory. We help you understand location dynamics, project quality, realistic
-                returns and risks before you commit.
+          <div className="grid gap-6 lg:grid-cols-2">
+            {/* Card 1 */}
+            <div className="relative rounded-[26px] bg-white p-7 sm:p-9 border border-slate-200/80 shadow-[0_8px_30px_rgba(23,37,68,0.05)] hover:shadow-[0_16px_40px_rgba(23,37,68,0.08)] transition-all">
+              <div className="size-12 rounded-xl bg-gradient-to-br from-[#0084FF] to-[#0055D4] text-white flex items-center justify-center shadow-md shadow-blue-500/25 mb-5">
+                <Sparkles className="size-6" />
+              </div>
+              <h2 className="text-xl sm:text-2xl font-bold text-[#172544] mb-3">
+                Advisory, Not Just a Listing Portal
+              </h2>
+              <p className="text-sm text-slate-600 leading-relaxed mb-4">
+                Unlike generic property portals that display thousands of unverified listings without context, Smartz Spaces operates on institutional research, on-ground due diligence, and financial modeling.
               </p>
-              <p className="text-muted-foreground">
-                Our approach is data-driven but human-centered. We combine market research with on-ground verification
-                to give you a complete picture of any commercial property you are considering.
+              <p className="text-sm text-slate-600 leading-relaxed">
+                We analyze micro-market infrastructure, upcoming road linkages, realistic vacancy risk, and net rental yields so you invest with complete conviction.
               </p>
             </div>
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl mb-6">Powered by Realty Smartz</h2>
-              <p className="text-muted-foreground mb-4">
-                Smartz Spaces is backed by Realty Smartz Private Limited, bringing years of experience in commercial
-                real estate advisory across Gurgaon and Delhi NCR.
+
+            {/* Card 2 */}
+            <div className="relative rounded-[26px] bg-white p-7 sm:p-9 border border-slate-200/80 shadow-[0_8px_30px_rgba(23,37,68,0.05)] hover:shadow-[0_16px_40px_rgba(23,37,68,0.08)] transition-all">
+              <div className="size-12 rounded-xl bg-gradient-to-br from-[#172544] to-[#0E1A33] text-white flex items-center justify-center shadow-md shadow-slate-900/25 mb-5">
+                <Landmark className="size-6" />
+              </div>
+              <h2 className="text-xl sm:text-2xl font-bold text-[#172544] mb-3">
+                Powered by Realty Smartz
+              </h2>
+              <p className="text-sm text-slate-600 leading-relaxed mb-4">
+                Smartz Spaces is backed by Realty Smartz Private Limited, bringing years of seasoned commercial real estate advisory across Gurgaon and Delhi NCR.
               </p>
-              <p className="text-muted-foreground">
-                Our team has advised clients on office spaces, retail shops, SCO plots and pre-leased assets, helping
-                them align property decisions with business goals and investment objectives.
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Our specialists have advised private investors, family offices, and multinational corporate tenants on Grade A office leases, high-street retail shops, and pre-leased investment assets.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Decision Factors */}
-      <section className="py-12 sm:py-20">
+      {/* Decision Factors: How We Evaluate Properties */}
+      <section className="py-12 sm:py-16 bg-white border-y border-slate-200/80">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl mb-8">How We Evaluate Properties</h2>
+          <div className="max-w-2xl mb-10">
+            <div className="h-1.5 w-12 rounded-full bg-gradient-to-r from-[#FF302B] via-[#7C3AED] to-[#1557C0] mb-3" />
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#172544]">
+              How We Evaluate <span className="text-[#1557C0]">Commercial Properties</span>
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-slate-500 font-normal">
+              Our 6-point evaluation framework ensures that every recommended property has clear legal titles, realistic yields, and long-term liquidity.
+            </p>
+          </div>
+
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {decisionFactors.map((factor, idx) => (
-              <div key={idx} className="rounded-lg border border-border bg-card p-6">
-                <Target className="size-6 text-primary mb-3" />
-                <h3 className="font-semibold">{factor.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{factor.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services */}
-      <section className="py-12 bg-muted/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl mb-8">Our Services</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((service, idx) => (
-              <div key={idx} className="rounded-lg border border-border bg-card p-6">
-                <Building2 className="size-6 text-primary mb-3" />
-                <h3 className="font-semibold">{service.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{service.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section className="py-12 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl mb-8">Our Process</h2>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {processSteps.map((step, idx) => (
-              <div key={idx} className="relative">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground font-bold text-lg mb-4">
-                  {idx + 1}
+              <div
+                key={idx}
+                className="group rounded-2xl bg-[#F8FAFD] p-6 border border-slate-200/80 hover:border-blue-200 hover:bg-white hover:shadow-[0_10px_30px_rgba(23,37,68,0.06)] hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className="size-11 rounded-xl bg-blue-100/80 text-[#1557C0] flex items-center justify-center mb-4 group-hover:bg-[#1557C0] group-hover:text-white transition-colors">
+                  <Target className="size-5" />
                 </div>
-                <h3 className="font-semibold mb-2">{step.title}</h3>
-                <p className="text-sm text-muted-foreground">{step.description}</p>
-                {idx < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-6 left-full w-full h-0.5 bg-border -translate-x-6" />
-                )}
+                <h3 className="text-lg font-bold text-[#172544] mb-2">{factor.title}</h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{factor.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Statistics */}
-      {companyStats.some((s) => s.value !== null) && (
-        <section className="py-12 bg-muted/50">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl mb-8">Our Track Record</h2>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {companyStats.map((stat, idx) => (
-                <div key={idx} className="text-center">
-                  <div className="text-4xl font-bold text-primary">{stat.value || 'Data to be verified'}</div>
-                  <div className="mt-2 text-sm text-muted-foreground">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Why Choose Us */}
-      <section className="py-12 sm:py-20">
+      {/* Core Advisory Specializations (Replacing former placeholder) */}
+      <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl mb-8">Why Choose Smartz Spaces</h2>
-          <div className="grid gap-6 sm:grid-cols-2">
-            {[
-              { title: 'Research-First Approach', desc: 'We start with data and location research, not sales pitches.' },
-              { title: 'Transparent Analysis', desc: 'We share strengths, risks and realistic returns — not just the positives.' },
-              { title: 'No Conflict of Interest', desc: 'We work for you, not for developers. No commissions from builders.' },
-              { title: 'End-to-End Support', desc: 'From shortlisting to site visits, negotiation and documentation.' },
-            ].map((item, idx) => (
-              <div key={idx} className="flex gap-4">
-                <CheckCircle2 className="size-6 text-primary shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-semibold">{item.title}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="py-12 bg-muted/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl mb-8">Our Team</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { name: 'Coming Soon', role: 'Commercial Advisory Team', desc: 'Team profiles to be added.' },
-            ].map((member, idx) => (
-              <div key={idx} className="rounded-lg border border-border bg-card p-6 text-center">
-                <Users className="mx-auto size-12 text-primary mb-4" />
-                <h3 className="font-semibold">{member.name}</h3>
-                <p className="text-sm text-muted-foreground">{member.role}</p>
-                <p className="mt-2 text-xs text-muted-foreground">{member.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-12 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl mb-4">Ready to Discuss Your Requirements?</h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Schedule a consultation with our advisory team to discuss your commercial property goals.
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#172544]">
+              Our Core <span className="text-[#1557C0]">Advisory Divisions</span>
+            </h2>
+            <p className="mt-2 text-sm text-slate-500 font-normal">
+              Specialized domain teams delivering strategic commercial clarity.
             </p>
-            <Link href="/contact" className={buttonVariants({ size: 'lg' })}>
-              Book a Consultation <ArrowRight className="ml-2 size-4" />
-            </Link>
           </div>
-        </div>
-      </section>
 
-      {/* Enquiry Form */}
-      <section className="py-12 bg-muted/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">Get in Touch</h2>
-              <p className="mt-4 text-lg text-muted-foreground">
-                Share your requirements and we will get back to you with a personalized shortlist.
+          <div className="grid gap-6 sm:grid-cols-3">
+            <div className="rounded-[22px] bg-white p-7 border border-slate-200/80 shadow-[0_8px_25px_rgba(23,37,68,0.05)]">
+              <div className="size-12 rounded-xl bg-gradient-to-br from-[#0084FF] to-[#0055D4] text-white flex items-center justify-center mb-4 shadow-sm">
+                <Building2 className="size-6" />
+              </div>
+              <h3 className="text-lg font-bold text-[#172544]">Commercial &amp; Office Advisory</h3>
+              <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Advising corporates and investors on Grade A leases, managed offices, and strata-sale acquisitions across DLF Cyber City, Golf Course Road, and SPR.
               </p>
             </div>
-            <div className="rounded-lg border border-border bg-card p-6 sm:p-8">
-              <EnquiryForm
-                formType="consultation"
-                showBudget
-                showLocation
-                showGoal
-                submitLabel="Request Consultation"
-                messagePlaceholder="Tell us about your requirements (optional)"
-              />
+
+            <div className="rounded-[22px] bg-white p-7 border border-slate-200/80 shadow-[0_8px_25px_rgba(23,37,68,0.05)]">
+              <div className="size-12 rounded-xl bg-gradient-to-br from-[#FB923C] to-[#EA580C] text-white flex items-center justify-center mb-4 shadow-sm">
+                <TrendingUp className="size-6" />
+              </div>
+              <h3 className="text-lg font-bold text-[#172544]">Retail &amp; SCO Plot Analytics</h3>
+              <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Evaluating pedestrian footfalls, high-street visibility, anchor tenant covenants, and multi-storey commercial construction bye-laws for SCO assets.
+              </p>
+            </div>
+
+            <div className="rounded-[22px] bg-white p-7 border border-slate-200/80 shadow-[0_8px_25px_rgba(23,37,68,0.05)]">
+              <div className="size-12 rounded-xl bg-gradient-to-br from-[#10B981] to-[#047857] text-white flex items-center justify-center mb-4 shadow-sm">
+                <Scale className="size-6" />
+              </div>
+              <h3 className="text-lg font-bold text-[#172544]">Legal Due Diligence &amp; Mandates</h3>
+              <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Comprehensive RERA compliance checks, encumbrance verification, direct institutional developer pricing, and statutory registration guidance.
+              </p>
             </div>
           </div>
         </div>
       </section>
-    </>
+
+      {/* Services Section */}
+      <section className="py-12 sm:py-16 bg-white border-y border-slate-200/80">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mb-10">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#172544]">
+              Our End-to-End <span className="text-[#1557C0]">Services</span>
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-slate-500 font-normal">
+              Tailored services for commercial buyers, investors, and corporate occupants.
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service, idx) => (
+              <div
+                key={idx}
+                className="rounded-2xl bg-[#F8FAFD] p-6 border border-slate-200/80 hover:shadow-md transition-shadow"
+              >
+                <div className="size-10 rounded-xl bg-blue-100 text-[#1557C0] flex items-center justify-center mb-3">
+                  <Building2 className="size-5" />
+                </div>
+                <h3 className="text-base font-bold text-[#172544] mb-2">{service.title}</h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{service.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process: 4 Steps */}
+      <section className="py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#172544]">
+              Our Structured <span className="text-[#1557C0]">Process</span>
+            </h2>
+            <p className="mt-2 text-sm text-slate-500 font-normal">
+              How we guide your commercial acquisition from first consultation to possession.
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {processSteps.map((step, idx) => (
+              <div
+                key={idx}
+                className="relative rounded-2xl bg-white p-6 border border-slate-200/80 shadow-[0_6px_20px_rgba(23,37,68,0.04)]"
+              >
+                <div className="flex items-center justify-center size-10 rounded-full bg-[#1557C0] text-white font-bold text-sm mb-4 shadow-sm">
+                  {idx + 1}
+                </div>
+                <h3 className="font-bold text-[#172544] mb-2">{step.title}</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Consultation Request Form */}
+      <section className="py-12 sm:py-20 bg-white border-t border-slate-200/80">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <div className="h-1.5 w-12 rounded-full bg-gradient-to-r from-[#FF302B] via-[#7C3AED] to-[#1557C0] mx-auto mb-3" />
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#172544]">
+              Ready to Discuss Your <span className="text-[#1557C0]">Requirements?</span>
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-slate-500 font-normal">
+              Share your commercial investment objectives and connect with our senior advisory team.
+            </p>
+          </div>
+
+          <div className="rounded-[26px] bg-[#F8FAFD] p-6 sm:p-9 border border-slate-200/80 shadow-[0_10px_35px_rgba(23,37,68,0.05)]">
+            <EnquiryForm
+              formType="consultation"
+              showBudget
+              showLocation
+              showGoal
+              submitLabel="Request Strategy Consultation"
+              messagePlaceholder="Tell us about your requirements (budget, preferred micro-market, asset type)..."
+            />
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }

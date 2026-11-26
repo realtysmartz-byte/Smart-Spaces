@@ -257,3 +257,7 @@ export const articles: Article[] = [
     ],
   },
 ]
+
+export function getArticles(): Article[] {
+  return [...articles].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+}
